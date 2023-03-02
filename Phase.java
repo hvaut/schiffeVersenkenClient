@@ -7,5 +7,9 @@
  */
 public enum Phase
 {
-    LOGIN, LOBBY, PLACEMENT, GAME, EVALUATION
+    LOGIN,
+    LOBBY,
+    PLACEMENT,
+    GAME,
+    EVALUATION
 }
