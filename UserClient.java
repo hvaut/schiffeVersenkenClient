@@ -22,18 +22,92 @@ public class UserClient extends Client
         //this.gui=gui;
     }
 
+    /**
+     * Methode logIn
+     *
+     * @param name Ein Parameter
+     * @param password Ein Parameter
+     */
     public void logIn(String name, String password){}
+    /**
+     * Methode logOut
+     *
+     */
     public void logOut(){}
+    /**
+     * Methode challengePlayer
+     *
+     * @param user Ein Parameter
+     */
     public void challengePlayer(String user){}
+    /**
+     * Methode placeAt
+     *
+     * @param x1 Ein Parameter
+     * @param y1 Ein Parameter
+     * @param x2 Ein Parameter
+     * @param y2 Ein Parameter
+     */
     public void placeAt(int x1, int y1, int x2, int y2){}
+    /**
+     * Methode shootAt
+     *
+     * @param x Ein Parameter
+     * @param y Ein Parameter
+     */
     public void shootAt(int x, int y){}
+    /**
+     * Methode shipsPlaced
+     *
+     */
     public void shipsPlaced(){}
+    /**
+     * Methode processMessage
+     *
+     * @param message Ein Parameter
+     */
     public void processMessage(String message){}
+    /**
+     * Methode receiveFieldUpdate
+     *
+     * @param you Ein Parameter
+     * @param x Ein Parameter
+     * @param y Ein Parameter
+     * @param state Ein Parameter
+     */
     private void receiveFieldUpdate(boolean you, int x, int y, int state){}
+    /**
+     * Methode receivePlayable
+     *
+     */
     private void receivePlayable(){}
+    /**
+     * Methode receiveGameEnd
+     *
+     * @param sieger Ein Parameter
+     */
     private void receiveGameEnd(String sieger){}
+    /**
+     * Methode receiveSignedIn
+     *
+     */
     private void receiveSignedIn(){}
+    /**
+     * Methode receiveEnemy
+     *
+     * @param name Ein Parameter
+     */
     private void receiveEnemy(String name){}
+    /**
+     * Methode receivePlayer
+     *
+     * @param user Ein Parameter
+     */
     private void receivePlayer(String user){}
+    /**
+     * Methode receiveLeaderboard
+     *
+     * @param leaderboard Ein Parameter
+     */
     private void receiveLeaderboard(String leaderboard){}
 }
