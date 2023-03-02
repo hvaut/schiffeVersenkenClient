@@ -35,6 +35,12 @@ public class UserClient extends Client
      */
     public void logOut(){}
     /**
+     * Methode startGame
+     * 
+     * @param User Ein Parameter
+     */
+    public void startGame(String user) {}
+    /**
      * Methode challengePlayer
      *
      * @param user Ein Parameter
@@ -67,6 +73,12 @@ public class UserClient extends Client
      * @param message Ein Parameter
      */
     public void processMessage(String message){}
+    /**
+     * Methode changePhase
+     * 
+     * @param phase Ein Parameter
+     */
+    private void changePhase(int phase){}
     /**
      * Methode receiveFieldUpdate
      *
