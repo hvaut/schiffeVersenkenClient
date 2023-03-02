@@ -1,9 +1,9 @@
 
 /**
- * Beschreiben Sie hier die Aufzählungsklasse Phase.
+ * Enumeration to save, what Phase the Game currently has
  * 
- * @author  (Ihr Name)
- * @version (eine Versionsnummer oder ein Datum)
+ * @author  Tumerang
+ * @version 1
  */
 public enum Phase
 {
