@@ -1,21 +1,26 @@
 
 /**
- * Beschreiben Sie hier die Klasse UserClient.
+ * A client to play Fight for ships on Windows
+ * It connects you to a local server and so allows you to play against other people
  * 
- * @author (Ihr Name) 
- * @version (eine Versionsnummer oder ein Datum)
+ * @author Team Client
+ * @version 0.1
  */
 public class UserClient extends Client
 {
     private GUIController gui;
-    private List<User> leaderboard= new List<User>();
+    private List<User> leaderboard;
     private int[][] ownField = new int[10][10];
     private int[][] enemyField = new int[10][10];
     private Phase phase = Phase.LOGIN;
     private boolean yourTurn = false;
     
     /**
-     * Konstruktor für Objekte der Klasse UserClient
+     * Creates an new object of UserClient and tries to create a connection to the server.
+     *
+     * @param ip Ein Parameter
+     * @param port Ein Parameter
+     * @param gui Ein Parameter
      */
     public UserClient(String ip, int port, GUIController gui){
         super(ip, port);
@@ -23,43 +28,52 @@ public class UserClient extends Client
     }
 
     /**
-     * Methode logIn
+     * CALLED FROM GUI:
+     * Tries to logIn yourself on the Server
      *
-     * @param name Ein Parameter
-     * @param password Ein Parameter
+     * @param name Username used to identify yourself on the server
+     * @param password Password used to identify yourself on the server
      */
     public void logIn(String name, String password){}
     /**
-     * Methode logOut
+     * CALLED FROM GUI:
+     * Logs you out
      *
      */
     public void logOut(){}
     /**
-     * Methode startGame
-     * 
-     * @param User Ein Parameter
+     * CALLED FROM GUI:
+     * Asks the server to start a game against the choosen User ?challengePlayer?
+     * @param User The person you want to play with
      */
     public void startGame(String user) {}
     /**
-     * Methode challengePlayer
+     * CALLED FROM GUI:
+     * Asks the server to start a game against the choosen User ?startGame?
      *
      * @param user Ein Parameter
      */
     public void challengePlayer(String user){}
     /**
-     * Methode placeAt
+     * CALLED FROM GUI:
+     * Controlls whether the choosen ship is valid placed.
+     * If valid, it also sends it to the server.
      *
-     * @param x1 Ein Parameter
-     * @param y1 Ein Parameter
-     * @param x2 Ein Parameter
-     * @param y2 Ein Parameter
+     * @param x1 X-Coordinate where your ship begin
+     * @param y1 Y-Coordinate where your ship begin
+     * @param x2 X-Coordinate where your ship ends
+     * @param y2 Y-Coordinate where your ship ends
+     * @return Returns true if ship is valid, false otherwise
      */
-    public void placeAt(int x1, int y1, int x2, int y2){}
+    public boolean placeAt(int x1, int y1, int x2, int y2){return true;}
+
+
     /**
-     * Methode shootAt
-     *
-     * @param x Ein Parameter
-     * @param y Ein Parameter
+     * CALLED FROM GUI:
+     * Controlls whether the choosen place is in the field bounds
+     * If valid, it also sends the coordinate to the server
+     * @param x X-Coordinate of the shoot
+     * @param y Y-Coordinate of the shoot
      */
     public void shootAt(int x, int y){}
     
@@ -87,7 +101,7 @@ public class UserClient extends Client
     private void changePhase(int phase){}
     
     /**
-     * Method receiveFieldUpdate
+     * Methode receiveFieldUpdate
      * CALLED FROM processMessage()
      * Method updates both fields
      *
