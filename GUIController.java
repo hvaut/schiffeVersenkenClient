@@ -46,7 +46,7 @@ public class GUIController
      */
     public void newChallange()
     {
-        
+        //Are you sure its called "Challange"?
     }
     
     /**
@@ -104,4 +104,7 @@ public class GUIController
     {
         
     }
+    
+    //Bitte einfuegen oder mit Client-Gruppe sprechen
+    public void gameEnd(){}
 }

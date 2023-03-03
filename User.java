@@ -8,7 +8,7 @@
 public class User
 {
     private String name;
-    private String punkte;
+    private String points;
 
     
     
@@ -16,10 +16,13 @@ public class User
      * User Konstruktor
      *
      * @param name Ein Parameter
-     * @param punkte Ein Parameter
+     * @param points Ein Parameter
      */
-    public User(String name, String punkte)
+    public User(String name, String points)
     {
+        this.name=name;
+        this.points=points;
     }
-
+    
+    
 }

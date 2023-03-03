@@ -7,8 +7,8 @@
  */
 public class UserClient extends Client
 {
-    //private GUI gui;
-    //private List<User> leaderboard= new List<User>();
+    private GUIController gui;
+    private List<User> leaderboard= new List<User>();
     private int[][] ownField = new int[10][10];
     private int[][] enemyField = new int[10][10];
     private Phase phase = Phase.LOGIN;
@@ -17,9 +17,9 @@ public class UserClient extends Client
     /**
      * Konstruktor für Objekte der Klasse UserClient
      */
-    public UserClient(String ip, int port){
+    public UserClient(String ip, int port, GUIController gui){
         super(ip, port);
-        //this.gui=gui;
+        this.gui=gui;
     }
 
     /**
@@ -62,11 +62,17 @@ public class UserClient extends Client
      * @param y Ein Parameter
      */
     public void shootAt(int x, int y){}
-    /**
-     * Methode shipsPlaced
-     *
-     */
-    public void shipsPlaced(){}
+    
+    // /**
+     // * Methode shipsPlaced
+     // * CALLED FROM GUI
+     // * Method sends Notification about all ships placed to the server
+     // *
+     // */
+    // public void shipsPlaced(){
+        // NO FITTING PROTOCOLL COMMAND AVAIABLE
+    // }
+    
     /**
      * Methode processMessage
      *
@@ -79,26 +85,41 @@ public class UserClient extends Client
      * @param phase Ein Parameter
      */
     private void changePhase(int phase){}
+    
     /**
-     * Methode receiveFieldUpdate
+     * Method receiveFieldUpdate
+     * CALLED FROM processMessage()
+     * Method updates both fields
      *
-     * @param you Ein Parameter
-     * @param x Ein Parameter
-     * @param y Ein Parameter
-     * @param state Ein Parameter
+     * @param you Your own ships?
+     * @param x X-Coordinate of the field
+     * @param y Y-Coordinate of the field
+     * @param state New state of the field
      */
-    private void receiveFieldUpdate(boolean you, int x, int y, int state){}
+    private void receiveFieldUpdate(boolean you, int x, int y, int state){
+        if(you) ownField[x][y] = state;
+        else enemyField[x][y] = state;
+        gui.updateFields();
+    }
+    
     /**
      * Methode receivePlayable
      *
      */
     private void receivePlayable(){}
+    
     /**
-     * Methode receiveGameEnd
+     * Method receiveGameEnd
+     * CALLED FROM processMessage()
+     * Method ends the gameround
      *
-     * @param sieger Ein Parameter
+     * @param winner Player who has won
      */
-    private void receiveGameEnd(String sieger){}
+    private void receiveGameEnd(String winner){
+        phase = Phase.EVALUATION;
+        gui.gameEnd();
+    }
+    
     /**
      * Methode receiveSignedIn
      *
@@ -116,10 +137,22 @@ public class UserClient extends Client
      * @param user Ein Parameter
      */
     private void receivePlayer(String user){}
+    
     /**
-     * Methode receiveLeaderboard
+     * Method receiveLeaderboard
+     * CALLED FROM processMessage()
+     * Method updates the leaderboard
      *
-     * @param leaderboard Ein Parameter
+     * @param leaderboardString List of player with their points, sorted and presented as String
      */
-    private void receiveLeaderboard(String leaderboard){}
+    private void receiveLeaderboard(String leaderboardString){
+        String[] playerAndPoints = leaderboardString.substring(12).split(":");//NEED TO BE CONTROLLED
+        if(playerAndPoints.length>0){
+            this.leaderboard= new List<User>();
+            for(int i=0; i<playerAndPoints.length; i+=2){
+                this.leaderboard.append(new User(playerAndPoints[i],playerAndPoints[i+1]));
+            }
+            gui.updateLeaderboard();
+        }
+    }
 }
