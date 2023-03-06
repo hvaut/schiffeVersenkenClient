@@ -1,9 +1,10 @@
 
 /**
- * Beschreiben Sie hier die Klasse User.
+ * A player owning both a name and his own points
+ * Used to be displayed in the leaderboard
  * 
- * @author (Ihr Name) 
- * @version (eine Versionsnummer oder ein Datum)
+ * @author T
+ * @version 1.0
  */
 public class User
 {
@@ -13,10 +14,10 @@ public class User
     
     
     /**
-     * User Konstruktor
+     * Creates a new User with the given name and points
      *
-     * @param name Ein Parameter
-     * @param points Ein Parameter
+     * @param name Name of the user
+     * @param points Points the user was able to achieve until now
      */
     public User(String name, String points)
     {
@@ -24,5 +25,21 @@ public class User
         this.points=points;
     }
     
+    /**
+     * Returns the value of the variable name
+     *
+     * @return Username
+     */
+    public String getName(){
+        return name;
+    }
+    /**
+     * Returns the value of the variable points
+     *
+     * @return Points of the user
+     */
+    public String getPoints(){
+        return points;
+    }
     
 }

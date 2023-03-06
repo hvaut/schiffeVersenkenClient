@@ -4,7 +4,7 @@
  * It connects you to a local server and so allows you to play against other people
  * 
  * @author Team Client
- * @version 0.1
+ * @version 0.1.3
  */
 public class UserClient extends Client
 {
