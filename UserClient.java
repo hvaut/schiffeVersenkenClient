@@ -46,7 +46,9 @@ public class UserClient extends Client
      * Asks the server to start a game against the choosen User ?challengePlayer?
      * @param User The person you want to play with
      */
-    public void startGame(String user) {}
+    public void startGame(String user) {
+        send("REQUESTENEMY:"+user);
+    }
     /**
      * CALLED FROM GUI:
      * Asks the server to start a game against the choosen User ?startGame?
@@ -98,7 +100,17 @@ public class UserClient extends Client
      * 
      * @param phase Ein Parameter
      */
-    private void changePhase(int phase){}
+    private void changePhase(int phase){
+        Phase tmpPhase = Phase.LOGIN;
+        switch (phase){
+            case 1: tmpPhase = Phase.LOGIN;
+            case 2: tmpPhase = Phase.LOBBY;
+            case 3: tmpPhase = Phase.PLACEMENT;
+            case 4: tmpPhase = Phase.GAME;
+            case 5: tmpPhase = Phase.EVALUATION;
+        }
+        gui.nextPhase(tmpPhase);
+    }
     
     /**
      * Methode receiveFieldUpdate
