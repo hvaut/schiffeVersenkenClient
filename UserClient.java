@@ -97,11 +97,13 @@ public class UserClient extends Client
     public void processMessage(String message){}
     /**
      * Methode changePhase
+     * CALLED FROM processMessage()
+     * Updates game phase in GUI
      * 
-     * @param phase Ein Parameter
+     * @param phase Int Parameter which is converted to phase. Contains the numbers 1 to 5. Other values are invalid
      */
     private void changePhase(int phase){
-        Phase tmpPhase = Phase.LOGIN;
+        Phase tmpPhase;
         switch (phase){
             case 1: 
                 tmpPhase = Phase.LOGIN;
@@ -118,6 +120,9 @@ public class UserClient extends Client
             case 5: 
                 tmpPhase = Phase.EVALUATION;
                 break;
+            default:
+                System.out.println("CLIENT: Fehler bei der Spielphase - Unbekannte Phase");
+                return;
         }
         gui.nextPhase(tmpPhase);
     }
