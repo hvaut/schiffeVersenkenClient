@@ -103,11 +103,21 @@ public class UserClient extends Client
     private void changePhase(int phase){
         Phase tmpPhase = Phase.LOGIN;
         switch (phase){
-            case 1: tmpPhase = Phase.LOGIN;
-            case 2: tmpPhase = Phase.LOBBY;
-            case 3: tmpPhase = Phase.PLACEMENT;
-            case 4: tmpPhase = Phase.GAME;
-            case 5: tmpPhase = Phase.EVALUATION;
+            case 1: 
+                tmpPhase = Phase.LOGIN;
+                break;
+            case 2: 
+                tmpPhase = Phase.LOBBY;
+                break;
+            case 3: 
+                tmpPhase = Phase.PLACEMENT;
+                break;
+            case 4: 
+                tmpPhase = Phase.GAME;
+                break;
+            case 5: 
+                tmpPhase = Phase.EVALUATION;
+                break;
         }
         gui.nextPhase(tmpPhase);
     }
