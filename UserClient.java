@@ -96,7 +96,7 @@ public class UserClient extends Client
      */
     public void processMessage(String message){}
     /**
-     * Methode changePhase
+     * Method changePhase
      * CALLED FROM processMessage()
      * Updates game phase in GUI
      * 
@@ -144,10 +144,15 @@ public class UserClient extends Client
     }
     
     /**
-     * Methode receivePlayable
+     * Method receivePlayable
+     * CALLED FROM processMessage()
+     * Calls the method "yourTurn" in GUI
      *
      */
-    private void receivePlayable(){}
+    private void receivePlayable(){
+        yourTurn = true;
+        gui.yourTurn();
+    }
     
     /**
      * Method receiveGameEnd
