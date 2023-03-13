@@ -73,6 +73,7 @@ public class UserClient extends Client
      * @return Returns true if ship is valid, false otherwise
      */
     public boolean placeAt(int x1, int y1, int x2, int y2){
+        send("+SENDSHIPS");
         int tmp;
         if(x1 > x2){
             tmp = x1;
@@ -103,6 +104,8 @@ public class UserClient extends Client
                         ownField[i][j] = 1;
                     }
                 }
+                send("PLACE:" + x1 + x2 + ":" + y1 + y2);
+                return true;
             }
         }
         return false;
