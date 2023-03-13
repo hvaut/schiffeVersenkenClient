@@ -147,14 +147,13 @@ public class UserClient extends Client
                 this.processPositiveResponse(message.substring(1,message.length()));
                 break;
             case '-':
-                //this.processNegativeResponse();
+                this.processNegativeResponse(message.substring(1, message.length()));
                 break;
             default:
-                //this.processRequest();
+                this.processRequest(message);
                 break;
         };
     }
-        
         /**
          * Methode processPositiveResponse
          *
@@ -188,11 +187,133 @@ public class UserClient extends Client
                     //currently no additions needed
                     break;
                 default:
-                    System.out.println("Error at processPositiveResponse with:" + elements[1]);
+                    System.out.println("Error at processPositiveResponse with:" + elements[0]);
                     break;
             };
         }
+        /**
+         * Methode processNegativeResponse
+         *
+         * @param message String Message without operator, that was send by Server
+         */
+        private void processNegativeResponse(String message){
+            String[] elements = message.split(":");
+            String errorMessage;
+            switch(elements[0]){
+                case "LOGIN":
+                    errorMessage = elements[1];
+                    //ErrorMessage, probably with JOptionPane
+                    break;
+                case "LOGOUT":
+                    errorMessage = elements[1];
+                    //ErrorMessage, probably with JOptionPane
+                    break;
+                case "LEADERBOARD":
+                    errorMessage = elements[1];
+                    //ErrorMessage, probably with JOptionPane
+                    break;
+                case "GETENEMIES":
+                    errorMessage = elements[1];
+                    //ErrorMessage, probably with JOptionPane
+                    break;
+                case "REQUESTENEMY":
+                    errorMessage = elements[1];
+                    //ErrorMessage, probably with JOptionPane
+                    break;
+                case "PLACE":
+                    errorMessage = elements[1];
+                    //ErrorMessage, probably with JOptionPane
+                    break;
+                case "SHOOT":
+                    errorMessage = elements[1];
+                    //ErrorMessage, probably with JOptionPane
+                    break;
+                default:
+                    System.out.println("Error at processNegativeResponse with:" + elements[0]);
+                    break;
+            };
+        }
+         /**
+         * Methode processRequest
+         *
+         * @param message String Message, that was send by Server
+         */
+        private void processRequest(String message){
+            String[] elements = message.split(":");       
+            switch(elements[0]){
+                case "STATUS":
+                    this.send("+STATUS");
+                    try{
+                        Phase phase = this.findPhaseForString(elements[1]);
+                        this.changePhase(phase);
+                    }catch(Exception e){
+                        //ErrorMessage, probably with JOptionPane
+                    }
+                    break;
+                case "ENEMIES":
+                    this.send("+ENEMIES");
+                    this.receiveActivePlayers(elements);
+                    break;
+                case "SENDSHIPS":
+                    this.send("+SENDSHIPS");
+                    //needs to be implemented in GUIController as setShips
+                    break;
+                case "GETREQUEST":
+                    this.gui.newChallange(elements[1]);
+                    break;
+                case "ACTIVEUSER":
+                    this.send("+ACTIVEUSER");
+                    this.receivePlayable();
+                    break;
+                case "FIELDUPDATE":
+                    int x;
+                    int y;
+                    this.send("+FIELDUPDATE"); // potition ergänzen
+                    //position unklar, wie Position (siehe Protokoll) aufgeteilt (x & y)
+                    // events als int??
+                    // field ID?
+                    break;
+                case "RESULT":
+                    this.send("+RESULT");
+                    this.receiveGameEnd(elements[1]);//changes in receiveGameEnd necessary!!!
+                    break;
+                case "GETREMATCH":
+                    this.gui.rematchRequest();
+                    break;
+                default:
+                    System.out.println("Error at processPositiveResponse with:" + elements[0]);
+                    break;
+            };
+        }
+            /**
+             * Method findPhaseForString
+             *
+             * @param message String Phase that needs to be changed into a Phase Object
+             * @return phase Phase
+             */
+            private Phase findPhaseForString(String message)throws Exception{
+                switch(message){
+                    case "LOGIN":
+                        return Phase.LOGIN;
+                    case "LOBBY":
+                        return Phase.LOBBY;
+                    case "PLACEMENT":
+                        return Phase.PLACEMENT;
+                    case "GAME":
+                        return Phase.GAME;
+                    case "EVALUATION":
+                        return Phase.EVALUATION;
+                    default:
+                        throw new Exception("Unknown Phase:" + message);
+                }
+            }
             
+    /**
+     * Method changePhase
+     * Phase ist changed both for Client and GUI
+     *
+     * @param phase Phase
+     */
     private void changePhase(Phase phase){
         this.phase = phase;
         this.gui.nextPhase(phase);

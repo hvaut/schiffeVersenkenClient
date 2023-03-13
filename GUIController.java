@@ -130,7 +130,7 @@ public class GUIController
      * CALLED FROM CLIENT
      * Method is called, if the a player challanged this client
      */
-    public void newChallange()
+    public void newChallange(String enemyName)
     {
         //Are you sure its called "Challange"?
     }
