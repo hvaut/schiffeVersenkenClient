@@ -11,6 +11,7 @@ import javafx.scene.paint.Color;
 import javafx.collections.*;
 import javafx.scene.image.*;
 
+//must importiert werden, um die Application zu schließen
 import javafx.application.Platform;
 
 /**

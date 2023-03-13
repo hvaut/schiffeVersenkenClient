@@ -248,7 +248,7 @@ public class UserClient extends Client
      */
     private void receiveGameEnd(String winner){
         phase = Phase.EVALUATION;
-        gui.gameEnd();
+        gui.nextPhase(Phase.EVALUATION);
     }
     
     /**
