@@ -11,6 +11,15 @@ public class GUIController
         currState = Phase.LOGIN;
     }
     
+    /**
+     * CALLED FROM CLIENT
+     * initializes the Phase: "_nextPhase"
+     */
+    public void nextPhase(Phase _nextPhase)
+    {
+        
+    }
+    
     //LOGINPHASE
     /**
      * CALLED FROM CLIENT

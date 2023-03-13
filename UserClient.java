@@ -46,7 +46,9 @@ public class UserClient extends Client
      * Asks the server to start a game against the choosen User ?challengePlayer?
      * @param User The person you want to play with
      */
-    public void startGame(String user) {}
+    public void startGame(String user) {
+        send("REQUESTENEMY:"+user);
+    }
     /**
      * CALLED FROM GUI:
      * Asks the server to start a game against the choosen User ?startGame?
@@ -94,11 +96,36 @@ public class UserClient extends Client
      */
     public void processMessage(String message){}
     /**
-     * Methode changePhase
+     * Method changePhase
+     * CALLED FROM processMessage()
+     * Updates game phase in GUI
      * 
-     * @param phase Ein Parameter
+     * @param phase Int Parameter which is converted to phase. Contains the numbers 1 to 5. Other values are invalid
      */
-    private void changePhase(int phase){}
+    private void changePhase(int phase){
+        Phase tmpPhase;
+        switch (phase){
+            case 1: 
+                tmpPhase = Phase.LOGIN;
+                break;
+            case 2: 
+                tmpPhase = Phase.LOBBY;
+                break;
+            case 3: 
+                tmpPhase = Phase.PLACEMENT;
+                break;
+            case 4: 
+                tmpPhase = Phase.GAME;
+                break;
+            case 5: 
+                tmpPhase = Phase.EVALUATION;
+                break;
+            default:
+                System.out.println("CLIENT: Fehler bei der Spielphase - Unbekannte Phase");
+                return;
+        }
+        gui.nextPhase(tmpPhase);
+    }
     
     /**
      * Methode receiveFieldUpdate
@@ -117,10 +144,15 @@ public class UserClient extends Client
     }
     
     /**
-     * Methode receivePlayable
+     * Method receivePlayable
+     * CALLED FROM processMessage()
+     * Calls the method "yourTurn" in GUI
      *
      */
-    private void receivePlayable(){}
+    private void receivePlayable(){
+        yourTurn = true;
+        gui.yourTurn();
+    }
     
     /**
      * Method receiveGameEnd
