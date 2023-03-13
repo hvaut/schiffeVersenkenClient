@@ -158,14 +158,12 @@ public class UserClient extends Client
             String[] elements = message.split(":");       
             switch(elements[0]){
                 case "LOGIN":
-                    this.changePhase(Phase.LOBBY);
+                    this.receiveSignedIn();
                     break;
                 case "LOGOUT":
-                    this.changePhase(Phase.LOGIN);
                     break;
                 case "LEADERBOARD":
-                    List<User> leaderList = this.constructLeaderList(elements);
-                    this.gui.updateLeaderboard(leaderList);
+                    this.receiveLeaderboard(elements);
                     break;
                 case "GETENEMIES":
                     break;
@@ -182,17 +180,7 @@ public class UserClient extends Client
                     break;
             };
         }
-            private List<User> constructLeaderList(String[] elements){
-                List<User> list = new List<>();
-                
-                for(int i = 1; i<elements.length;i = i+2){
-                    String name = elements[i];
-                    String score = elements[i+1];
-                    User user = new User(name, score);
-                    list.append(user);
-                }
-                return list;
-            }
+            
     private void changePhase(Phase phase){
         this.phase = phase;
         this.gui.nextPhase(phase);
@@ -242,7 +230,9 @@ public class UserClient extends Client
      * Methode receiveSignedIn
      *
      */
-    private void receiveSignedIn(){}
+    private void receiveSignedIn(){
+    
+    }
     /**
      * Methode receiveEnemy
      *
@@ -263,14 +253,19 @@ public class UserClient extends Client
      *
      * @param leaderboardString List of player with their points, sorted and presented as String
      */
-    private void receiveLeaderboard(String leaderboardString){
-        String[] playerAndPoints = leaderboardString.substring(12).split(":");//NEED TO BE CONTROLLED
-        if(playerAndPoints.length>0){
-            this.leaderboard= new List<User>();
-            for(int i=0; i<playerAndPoints.length; i+=2){
-                this.leaderboard.append(new User(playerAndPoints[i],playerAndPoints[i+1]));
-            }
-            //gui.updateLeaderboard();
-        }
+    private void receiveLeaderboard(String[] elements){
+        List<User> leaderList = this.constructLeaderList(elements);
+                    this.gui.updateLeaderboard(leaderList);
     }
+        private List<User> constructLeaderList(String[] elements){
+                List<User> list = new List<>();
+                
+                for(int i = 1; i<elements.length;i = i+2){
+                    String name = elements[i];
+                    String score = elements[i+1];
+                    User user = new User(name, score);
+                    list.append(user);
+                }
+                return list;
+            }
 }
