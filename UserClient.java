@@ -96,6 +96,8 @@ public class UserClient extends Client
             }
         }
         
+        
+        
         if(x1 == x2 || y1 == y2){
             for(int i = x1-1; i <= x2+1; i++){
                 for(int j = x1-1; j <= x2+1; j++){
