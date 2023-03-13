@@ -194,37 +194,7 @@ public class UserClient extends Client
         this.phase = phase;
         this.gui.nextPhase(phase);
     }
-    /**
-     * Method changePhase
-     * CALLED FROM processMessage()
-     * Updates game phase in GUI
-     * 
-     * @param phase Int Parameter which is converted to phase. Contains the numbers 1 to 5. Other values are invalid
-     */
-    private void changePhase(int phase){
-        Phase tmpPhase;
-        switch (phase){
-            case 1: 
-                tmpPhase = Phase.LOGIN;
-                break;
-            case 2: 
-                tmpPhase = Phase.LOBBY;
-                break;
-            case 3: 
-                tmpPhase = Phase.PLACEMENT;
-                break;
-            case 4: 
-                tmpPhase = Phase.GAME;
-                break;
-            case 5: 
-                tmpPhase = Phase.EVALUATION;
-                break;
-            default:
-                System.out.println("CLIENT: Fehler bei der Spielphase - Unbekannte Phase");
-                return;
-        }
-        gui.nextPhase(tmpPhase);
-    }
+    
     
     /**
      * Methode receiveFieldUpdate
@@ -297,7 +267,7 @@ public class UserClient extends Client
             for(int i=0; i<playerAndPoints.length; i+=2){
                 this.leaderboard.append(new User(playerAndPoints[i],playerAndPoints[i+1]));
             }
-            gui.updateLeaderboard();
+            //gui.updateLeaderboard();
         }
     }
 }
