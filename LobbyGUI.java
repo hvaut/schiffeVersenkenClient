@@ -39,6 +39,8 @@ public class LobbyGUI extends Application {
     private GUIController controller;
 
     public void start(Stage primaryStage) { 
+        classStage = primaryStage;
+        
         Pane root = new Pane();
         Scene scene = new Scene(root, 1123, 903);
         // Anfang Komponenten

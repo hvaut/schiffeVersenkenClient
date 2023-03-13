@@ -34,9 +34,9 @@ public class LoginGUI extends Application{
     //Muss eingefügt werden, damit die Klasse instanziert werden kann!
     static Stage classStage = new Stage();
     private GUIController controller;
-    
+
     public void start(Stage primaryStage) { 
-        //classStage = primaryStage;
+        classStage = primaryStage;
 
         Pane root = new Pane();
         Scene scene = new Scene(root, 484, 312);
@@ -94,9 +94,9 @@ public class LoginGUI extends Application{
 
     public void setController(GUIController newController)
     {
-        controller = newController;
+    controller = newController;
     }
-    
+
     public void quit()
     {
         Platform.exit();

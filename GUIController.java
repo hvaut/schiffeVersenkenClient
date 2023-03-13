@@ -22,11 +22,10 @@ public class GUIController
         loginGUI = new LoginGUI();
         loginGUI.start(loginGUI.classStage);
         loginGUI.setController(this);
-    }
-    
-    public void QUITTEST()
-    {
-        loginGUI.quit();
+ 
+        lobbyGUI = new LobbyGUI();
+        lobbyGUI.start(lobbyGUI.classStage);
+        lobbyGUI.setController(this);
     }
     
     /**
@@ -35,15 +34,15 @@ public class GUIController
      */
     public void nextPhase(Phase _nextPhase)
     {
-        //Quit active Window
+        //Quit active Application
         switch (currState)
         {
             case LOGIN:
-                //loginGUI.quit();
+                loginGUI.quit();
                 loginGUI = null;
                 break;
             case LOBBY:
-                //lobbyGUI.quit();
+                lobbyGUI.quit();
                 lobbyGUI = null;
                 break;
             case PLACEMENT:
@@ -73,23 +72,23 @@ public class GUIController
                 break;
             case LOBBY:
                 lobbyGUI = new LobbyGUI();
-                //lobbyGUI.start(lobbyGUI.classStage);
-                //lobbyGUI.setcontroller(this);
+                lobbyGUI.start(lobbyGUI.classStage);
+                lobbyGUI.setController(this);
                 break;
             case PLACEMENT:
                 placementGUI = new PlacementGUI();
                 //placementGUI.start(placementGUI.classStage);
-                //placementGUI.setcontroller(this);
+                //placementGUI.setController(this);
                 break;
             case GAME:
                 gameGUI = new GameGUI();
                 //gameGUI.start(gameGUI.classStage);
-                //gameGUI.setcontroller(this);
+                //gameGUI.setController(this);
                 break;
             case EVALUATION:
                 gameoverGUI = new GameOverGUI();
                 //gameoverGUI.start(gameoverGUI.classStage);
-                //gameover.setcontroller(this);
+                //gameover.setcController(this);
                 break;
             default:
                 //impossible
