@@ -115,8 +115,10 @@ public class UserClient extends Client
                     this.changePhase(Phase.LOBBY);
                     break;
                 case "LOGOUT":
+                    this.changePhase(Phase.LOGIN);
                     break;
                 case "LEADERBOARD":
+                    
                     break;
                 case "GETENEMIES":
                     break;
