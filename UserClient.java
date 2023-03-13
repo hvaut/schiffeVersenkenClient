@@ -10,8 +10,13 @@ public class UserClient extends Client
 {
     private GUIController gui;
     private List<User> leaderboard;
+    /**
+     * 0 = water
+     * 1 = ship
+     */
     private int[][] ownField = new int[10][10];
     private int[][] enemyField = new int[10][10];
+    
     private Phase phase = Phase.LOGIN;
     private boolean yourTurn = false;
     
@@ -67,7 +72,39 @@ public class UserClient extends Client
      * @param y2 Y-Coordinate where your ship ends
      * @return Returns true if ship is valid, false otherwise
      */
-    public boolean placeAt(int x1, int y1, int x2, int y2){return true;}
+    public boolean placeAt(int x1, int y1, int x2, int y2){
+        int tmp;
+        if(x1 > x2){
+            tmp = x1;
+            x1 = x2;
+            x2 = tmp;
+        }
+        
+        if(y1 > y2){
+            tmp = y1;
+            y1 = y2;
+            y2 = tmp;
+        }
+        
+        for(int i = x1-1; i <= x2+1; i++){
+            for(int j = x1-1; j <= x2+1; j++){
+                if(i >= 0 && i <= 9 && j >= 0 && j<=9){
+                    if(ownField[i][j] != 0){
+                        return false;
+                    }
+                }
+            }
+        }
+        
+        if(x1 == x2 || y1 == y2){
+            for(int i = x1-1; i <= x2+1; i++){
+                for(int j = x1-1; j <= x2+1; j++){
+                    ownField[i][j] = 1;
+                }
+            }
+        }
+        return false;
+    }
 
 
     /**
@@ -77,7 +114,11 @@ public class UserClient extends Client
      * @param x X-Coordinate of the shoot
      * @param y Y-Coordinate of the shoot
      */
-    public void shootAt(int x, int y){}
+    public void shootAt(int x, int y){
+        if(x >= 0 && x <= 9 && y >= 0 && y<=9){
+            send("SHOOT:" + x + y);
+        }
+    }
     
     // /**
      // * Methode shipsPlaced
