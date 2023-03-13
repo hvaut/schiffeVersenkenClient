@@ -94,7 +94,49 @@ public class UserClient extends Client
      *
      * @param message Ein Parameter
      */
-    public void processMessage(String message){}
+    public void processMessage(String message){
+        char operator = message.charAt(0);
+        switch(operator){
+            case '+':
+                this.processPositiveResponse(message.substring(1,message.length()));
+                break;
+            case '-':
+                //this.processNegativeResponse();
+                break;
+            default:
+                //this.processRequest();
+                break;
+        };
+    }
+        private void processPositiveResponse(String message){
+            String[] elements = message.split(":");       
+            switch(elements[0]){
+                case "LOGIN":
+                    this.changePhase(Phase.LOBBY);
+                    break;
+                case "LOGOUT":
+                    break;
+                case "LEADERBOARD":
+                    break;
+                case "GETENEMIES":
+                    break;
+                case "REQUESTENEMY":
+                    break;
+                case "PLACE":
+                    break;
+                case "SHOOT":
+                    break;
+                case "REMATCH":
+                    break;
+                default:
+                    System.out.println("Error at processPositiveResponse with:" + elements[1]);
+                    break;
+            };
+        }
+    private void changePhase(Phase phase){
+        this.phase = phase;
+        this.gui.nextPhase(phase);
+    }
     /**
      * Method changePhase
      * CALLED FROM processMessage()
