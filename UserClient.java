@@ -161,7 +161,8 @@ public class UserClient extends Client
                     this.changePhase(Phase.LOGIN);
                     break;
                 case "LEADERBOARD":
-                    
+                    List<User> leaderList = this.constructLeaderList(elements);
+                    this.gui.updateLeaderboard(leaderList);
                     break;
                 case "GETENEMIES":
                     break;
@@ -178,6 +179,17 @@ public class UserClient extends Client
                     break;
             };
         }
+            private List<User> constructLeaderList(String[] elements){
+                List<User> list = new List<>();
+                
+                for(int i = 1; i<elements.length;i = i+2){
+                    String name = elements[i];
+                    String score = elements[i+1];
+                    User user = new User(name, score);
+                    list.append(user);
+                }
+                return list;
+            }
     private void changePhase(Phase phase){
         this.phase = phase;
         this.gui.nextPhase(phase);
