@@ -39,22 +39,31 @@ public class GUIController
         switch (currState)
         {
             case LOGIN:
-                loginGUI.quit();
+                //loginGUI.quit();
                 loginGUI = null;
                 break;
             case LOBBY:
+                //lobbyGUI.quit();
+                lobbyGUI = null;
                 break;
             case PLACEMENT:
+                //placementGUI.quit();
+                placementGUI = null;
                 break;
             case GAME:
+                //gameGUI.quit();
+                gameGUI = null;
                 break;
             case EVALUATION:
+                //gameoverGUI.quit();
+                gameoverGUI = null;
                 break;
             default:
                 //impossible
                 break;
         }
         currState = _nextPhase;
+        //initializes new Window
         switch (currState)
         {
             case LOGIN:
@@ -68,10 +77,19 @@ public class GUIController
                 //lobbyGUI.setcontroller(this);
                 break;
             case PLACEMENT:
+                placementGUI = new PlacementGUI();
+                //placementGUI.start(placementGUI.classStage);
+                //placementGUI.setcontroller(this);
                 break;
             case GAME:
+                gameGUI = new GameGUI();
+                //gameGUI.start(gameGUI.classStage);
+                //gameGUI.setcontroller(this);
                 break;
             case EVALUATION:
+                gameoverGUI = new GameOverGUI();
+                //gameoverGUI.start(gameoverGUI.classStage);
+                //gameover.setcontroller(this);
                 break;
             default:
                 //impossible

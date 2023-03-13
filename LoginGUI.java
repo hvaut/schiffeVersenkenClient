@@ -22,7 +22,7 @@ import javafx.application.Platform;
  * @author 
  */
 
-public class LoginGUI extends Application {
+public class LoginGUI extends Application{
     // Anfang Attribute
     private TextField tfUsername = new TextField();
     private TextField tfPassword = new TextField();
