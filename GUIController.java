@@ -122,7 +122,7 @@ public class GUIController
      * CALLED FROM CLIENT
      * Method updates the Leaderboard
      */
-    public void updateLeaderboard()
+    public void updateLeaderboard(List<User> leaderList)
     {
         
     }

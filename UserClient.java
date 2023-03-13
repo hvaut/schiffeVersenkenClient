@@ -10,8 +10,13 @@ public class UserClient extends Client
 {
     private GUIController gui;
     private List<User> leaderboard;
+    /**
+     * 0 = water
+     * 1 = ship
+     */
     private int[][] ownField = new int[10][10];
     private int[][] enemyField = new int[10][10];
+    
     private Phase phase = Phase.LOGIN;
     private boolean yourTurn = false;
     
@@ -67,7 +72,44 @@ public class UserClient extends Client
      * @param y2 Y-Coordinate where your ship ends
      * @return Returns true if ship is valid, false otherwise
      */
-    public boolean placeAt(int x1, int y1, int x2, int y2){return true;}
+    public boolean placeAt(int x1, int y1, int x2, int y2){
+        send("+SENDSHIPS");
+        int tmp;
+        if(x1 > x2){
+            tmp = x1;
+            x1 = x2;
+            x2 = tmp;
+        }
+        
+        if(y1 > y2){
+            tmp = y1;
+            y1 = y2;
+            y2 = tmp;
+        }
+        
+        for(int i = x1-1; i <= x2+1; i++){
+            for(int j = x1-1; j <= x2+1; j++){
+                if(i >= 0 && i <= 9 && j >= 0 && j<=9){
+                    if(ownField[i][j] != 0){
+                        return false;
+                    }
+                }
+            }
+        }
+        
+        if(true){
+            if(x1 == x2 || y1 == y2){
+                for(int i = x1-1; i <= x2+1; i++){
+                    for(int j = x1-1; j <= x2+1; j++){
+                        ownField[i][j] = 1;
+                    }
+                }
+                send("PLACE:" + x1 + x2 + ":" + y1 + y2);
+                return true;
+            }
+        }
+        return false;
+    }
 
 
     /**
@@ -77,7 +119,11 @@ public class UserClient extends Client
      * @param x X-Coordinate of the shoot
      * @param y Y-Coordinate of the shoot
      */
-    public void shootAt(int x, int y){}
+    public void shootAt(int x, int y){
+        if(x >= 0 && x <= 9 && y >= 0 && y<=9){
+            send("SHOOT:" + x + y);
+        }
+    }
     
     // /**
      // * Methode shipsPlaced
@@ -118,7 +164,8 @@ public class UserClient extends Client
                     this.changePhase(Phase.LOGIN);
                     break;
                 case "LEADERBOARD":
-                    
+                    List<User> leaderList = this.constructLeaderList(elements);
+                    this.gui.updateLeaderboard(leaderList);
                     break;
                 case "GETENEMIES":
                     break;
@@ -135,41 +182,22 @@ public class UserClient extends Client
                     break;
             };
         }
+            private List<User> constructLeaderList(String[] elements){
+                List<User> list = new List<>();
+                
+                for(int i = 1; i<elements.length;i = i+2){
+                    String name = elements[i];
+                    String score = elements[i+1];
+                    User user = new User(name, score);
+                    list.append(user);
+                }
+                return list;
+            }
     private void changePhase(Phase phase){
         this.phase = phase;
         this.gui.nextPhase(phase);
     }
-    /**
-     * Method changePhase
-     * CALLED FROM processMessage()
-     * Updates game phase in GUI
-     * 
-     * @param phase Int Parameter which is converted to phase. Contains the numbers 1 to 5. Other values are invalid
-     */
-    private void changePhase(int phase){
-        Phase tmpPhase;
-        switch (phase){
-            case 1: 
-                tmpPhase = Phase.LOGIN;
-                break;
-            case 2: 
-                tmpPhase = Phase.LOBBY;
-                break;
-            case 3: 
-                tmpPhase = Phase.PLACEMENT;
-                break;
-            case 4: 
-                tmpPhase = Phase.GAME;
-                break;
-            case 5: 
-                tmpPhase = Phase.EVALUATION;
-                break;
-            default:
-                System.out.println("CLIENT: Fehler bei der Spielphase - Unbekannte Phase");
-                return;
-        }
-        gui.nextPhase(tmpPhase);
-    }
+    
     
     /**
      * Methode receiveFieldUpdate
@@ -242,7 +270,7 @@ public class UserClient extends Client
             for(int i=0; i<playerAndPoints.length; i+=2){
                 this.leaderboard.append(new User(playerAndPoints[i],playerAndPoints[i+1]));
             }
-            gui.updateLeaderboard();
+            //gui.updateLeaderboard();
         }
     }
 }
