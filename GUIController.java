@@ -112,7 +112,7 @@ public class GUIController
      * CALLED FROM CLIENT
      * Method updates the List of available Players
      */
-    public void updatePlayerList()
+    public void updatePlayerList(List<User> playerList)
     {
         
     }

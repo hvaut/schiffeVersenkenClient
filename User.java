@@ -26,6 +26,16 @@ public class User
     }
     
     /**
+     * Creates a new User with the given name no value for points
+     *
+     * @param name Name of the user
+     */
+    public User(String name)
+    {
+        this.name=name;
+    }
+    
+    /**
      * Returns the value of the variable name
      *
      * @return Username

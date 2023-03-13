@@ -154,6 +154,12 @@ public class UserClient extends Client
                 break;
         };
     }
+        
+        /**
+         * Methode processPositiveResponse
+         *
+         * @param message String Message without operator, that was send by Server
+         */
         private void processPositiveResponse(String message){
             String[] elements = message.split(":");       
             switch(elements[0]){
@@ -161,19 +167,25 @@ public class UserClient extends Client
                     this.receiveSignedIn();
                     break;
                 case "LOGOUT":
+                    //currently no additions needed
                     break;
                 case "LEADERBOARD":
                     this.receiveLeaderboard(elements);
                     break;
                 case "GETENEMIES":
+                    this.receiveActivePlayers(elements);
                     break;
                 case "REQUESTENEMY":
+                    //currently no additions needed
                     break;
                 case "PLACE":
+                    //currently no additions needed
                     break;
                 case "SHOOT":
+                    //currently no additions needed
                     break;
                 case "REMATCH":
+                    //currently no additions needed
                     break;
                 default:
                     System.out.println("Error at processPositiveResponse with:" + elements[1]);
@@ -231,7 +243,7 @@ public class UserClient extends Client
      *
      */
     private void receiveSignedIn(){
-    
+        //phase change is handled by Status message
     }
     /**
      * Methode receiveEnemy
@@ -251,12 +263,18 @@ public class UserClient extends Client
      * CALLED FROM processMessage()
      * Method updates the leaderboard
      *
-     * @param leaderboardString List of player with their points, sorted and presented as String
+     * @param elements String[] Elements of source String
      */
     private void receiveLeaderboard(String[] elements){
         List<User> leaderList = this.constructLeaderList(elements);
                     this.gui.updateLeaderboard(leaderList);
     }
+        /**
+         * Method constructLeaderList
+         *
+         * @param elements Elements of source String
+         * @return list List<User> List with User Elements, who have a name and points 
+         */
         private List<User> constructLeaderList(String[] elements){
                 List<User> list = new List<>();
                 
@@ -264,6 +282,33 @@ public class UserClient extends Client
                     String name = elements[i];
                     String score = elements[i+1];
                     User user = new User(name, score);
+                    list.append(user);
+                }
+                return list;
+            }
+    /**
+     * Method receiveActivePlayers
+     * CALLED FROM processMessage()
+     * Method updates the active players list
+     *
+     * @param elements String[] Elements of the source String
+     */
+    private void receiveActivePlayers(String[] elements){
+       List<User> playerList = this.constructPlayerList(elements);
+                this.gui.updatePlayerList(playerList); 
+    }
+        /**
+         * Method constructPlayerList
+         *
+         * @param elements Elements of source String
+         * @return list List<User> List with User Elements, who only have a name
+         */
+        private List<User> constructPlayerList(String[] elements){
+                List<User> list = new List<>();
+                
+                for(int i = 1; i<elements.length;i++){
+                    String name = elements[i];
+                    User user = new User(name);
                     list.append(user);
                 }
                 return list;
