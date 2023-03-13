@@ -10,6 +10,8 @@ import javafx.geometry.*;
 import javafx.scene.text.*;
 import javafx.scene.text.Font;
 
+
+
 /**
  *
  * Beschreibung
@@ -33,7 +35,7 @@ public class LobbyGUI extends Application {
   
   public void start(Stage primaryStage) { 
     Pane root = new Pane();
-    Scene scene = new Scene(root, 1123, 934);
+    Scene scene = new Scene(root, 1123, 903);
     // Anfang Komponenten
     
     primaryStage.setFullScreen(true);
@@ -49,10 +51,10 @@ public class LobbyGUI extends Application {
     lvLeaderboard.setPrefWidth(785);
     lvLeaderboard.setItems(lvLeaderboardObservableList);
     root.getChildren().add(lvLeaderboard);
-    line1.setStartX(395);
+    line1.setStartX(390);
     line1.setStartY(20);
-    line1.setEndX(396);
-    line1.setEndY(980);
+    line1.setEndX(391);
+    line1.setEndY(1004);
     root.getChildren().add(line1);
     lPlayerOnline.setLayoutX(30);
     lPlayerOnline.setLayoutY(30);
@@ -60,7 +62,7 @@ public class LobbyGUI extends Application {
     lPlayerOnline.setPrefWidth(320);
     lPlayerOnline.setText("Player Online");
     lPlayerOnline.setAlignment(Pos.CENTER);
-    lPlayerOnline.setFont(Font.font("Dialog", 16));
+    lPlayerOnline.setFont(Font.font("Castellar", 32));
     root.getChildren().add(lPlayerOnline);
     lLeaderboard.setLayoutX(440);
     lLeaderboard.setLayoutY(30);
@@ -68,6 +70,7 @@ public class LobbyGUI extends Application {
     lLeaderboard.setPrefWidth(785);
     lLeaderboard.setText("Leaderboard");
     lLeaderboard.setAlignment(Pos.CENTER);
+    lLeaderboard.setFont(Font.font("Castellar", 32));
     root.getChildren().add(lLeaderboard);
     // Ende Komponenten
     

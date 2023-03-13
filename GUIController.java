@@ -64,8 +64,8 @@ public class GUIController
                 break;
             case LOBBY:
                 lobbyGUI = new LobbyGUI();
-                lobbyGUI.start(loginGUI.classStage);
-                lobbyGUI.setcontroller(this);
+                //lobbyGUI.start(lobbyGUI.classStage);
+                //lobbyGUI.setcontroller(this);
                 break;
             case PLACEMENT:
                 break;
