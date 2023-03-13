@@ -39,13 +39,17 @@ public class UserClient extends Client
      * @param name Username used to identify yourself on the server
      * @param password Password used to identify yourself on the server
      */
-    public void logIn(String name, String password){}
+    public void logIn(String name, String password){
+        this.send("LOGIN:" + name + ":" + password);
+    }
     /**
      * CALLED FROM GUI:
      * Logs you out
      *
      */
-    public void logOut(){}
+    public void logOut(){
+        this.send("LOGOUT");
+    }
     /**
      * CALLED FROM GUI:
      * Asks the server to start a game against the choosen User ?challengePlayer?
@@ -137,8 +141,9 @@ public class UserClient extends Client
     
     /**
      * Methode processMessage
+     * Processes Message send by server
      *
-     * @param message Ein Parameter
+     * @param message String
      */
     public void processMessage(String message){
         char operator = message.charAt(0);
