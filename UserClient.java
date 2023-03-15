@@ -17,7 +17,8 @@ public class UserClient extends Client
     private int[][] ownField = new int[10][10];
     private int[][] enemyField = new int[10][10];
     
-    private int[] ships = new int[5];
+    //ship[1] ==> shipLength 1
+    private int[] ships = new int[6];
     
     private Phase phase = Phase.LOGIN;
     private boolean yourTurn = false;
@@ -112,7 +113,7 @@ public class UserClient extends Client
             }
         }
         
-        if(ships[shipLength-1] <= 0){
+        if(ships[shipLength] <= 0){
             if(x1 == x2 || y1 == y2){
                 for(int i = x1-1; i <= x2+1; i++){
                     for(int j = x1-1; j <= x2+1; j++){
