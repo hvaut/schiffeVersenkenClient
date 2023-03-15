@@ -195,4 +195,7 @@ public class GUIController
     {
     
     }
+    public void updateShips(){
+    
+    }
 }
