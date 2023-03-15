@@ -191,7 +191,7 @@ public class UserClient extends Client
                     //currently no additions needed
                     break;
                 case "PLACE":
-                    //currently no additions needed
+                    //update ships array
                     break;
                 case "SHOOT":
                     //currently no additions needed
@@ -269,7 +269,7 @@ public class UserClient extends Client
                     break;
                 case "SENDSHIPS":
                     this.send("+SENDSHIPS");
-                    //needs to be implemented in GUIController as setShips
+                    this.updateShips(elements);
                     break;
                 case "GETREQUEST":
                     this.gui.newChallange(elements[1]);
@@ -281,7 +281,7 @@ public class UserClient extends Client
                 case "FIELDUPDATE":
                     int x;
                     int y;
-                    this.send("+FIELDUPDATE"); // potition ergänzen
+                    this.send("+FIELDUPDATE"); // positition ergänzen
                     //position unklar, wie Position (siehe Protokoll) aufgeteilt (x & y)
                     // events als int??
                     // field ID?
@@ -298,6 +298,18 @@ public class UserClient extends Client
                     break;
             };
         }
+            /**
+             * Methode updateShips
+             *
+             * @param elements String[] params of message from Server
+             */
+            private void updateShips(String[] elements){
+                for(int i = 1; i < 6; i++){
+                        int amount = Integer.parseInt(elements[i]);
+                        this.ships[i] = amount;
+                    }
+                    
+            }
             /**
              * Method findPhaseForString
              *
