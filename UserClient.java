@@ -17,7 +17,8 @@ public class UserClient extends Client
     private int[][] ownField = new int[10][10];
     private int[][] enemyField = new int[10][10];
     
-    private int[] ships = new int[5];
+    //ship[1] ==> shipLength 1
+    private int[] ships = new int[6];
     
     private Phase phase = Phase.LOGIN;
     private boolean yourTurn = false;
@@ -79,7 +80,7 @@ public class UserClient extends Client
      * @return Returns true if ship is valid, false otherwise
      */
     public boolean placeAt(int x1, int y1, int x2, int y2){
-        int shipLength;
+        int shipLength = 0;
         int tmp;
         
         if(x1 > x2){
@@ -98,6 +99,10 @@ public class UserClient extends Client
             shipLength = y2-y1;
         }
         
+        if(y1-y2 == 0){
+            shipLength = x2-x1;
+        }
+        
         for(int i = x1-1; i <= x2+1; i++){
             for(int j = x1-1; j <= x2+1; j++){
                 if(i >= 0 && i <= 9 && j >= 0 && j<=9){
@@ -108,7 +113,7 @@ public class UserClient extends Client
             }
         }
         
-        if(true){
+        if(ships[shipLength] <= 0){
             if(x1 == x2 || y1 == y2){
                 for(int i = x1-1; i <= x2+1; i++){
                     for(int j = x1-1; j <= x2+1; j++){
@@ -191,7 +196,7 @@ public class UserClient extends Client
                     //currently no additions needed
                     break;
                 case "PLACE":
-                    //currently no additions needed
+                    //update ships array
                     break;
                 case "SHOOT":
                     //currently no additions needed
@@ -269,7 +274,7 @@ public class UserClient extends Client
                     break;
                 case "SENDSHIPS":
                     this.send("+SENDSHIPS");
-                    //needs to be implemented in GUIController as setShips
+                    this.updateShips(elements);
                     break;
                 case "GETREQUEST":
                     this.gui.newChallange(elements[1]);
@@ -281,7 +286,7 @@ public class UserClient extends Client
                 case "FIELDUPDATE":
                     int x;
                     int y;
-                    this.send("+FIELDUPDATE"); // potition ergänzen
+                    this.send("+FIELDUPDATE"); // positition ergänzen
                     //position unklar, wie Position (siehe Protokoll) aufgeteilt (x & y)
                     // events als int??
                     // field ID?
@@ -298,6 +303,18 @@ public class UserClient extends Client
                     break;
             };
         }
+            /**
+             * Methode updateShips
+             *
+             * @param elements String[] params of message from Server
+             */
+            private void updateShips(String[] elements){
+                for(int i = 1; i < 6; i++){
+                        int amount = Integer.parseInt(elements[i]);
+                        this.ships[i] = amount;
+                    }
+                    
+            }
             /**
              * Method findPhaseForString
              *
@@ -379,18 +396,24 @@ public class UserClient extends Client
     private void receiveSignedIn(){
         //phase change is handled by Status message
     }
+    
     /**
      * Methode receiveEnemy
      *
      * @param name Ein Parameter
      */
-    private void receiveEnemy(String name){}
+    private void receiveEnemy(String name){
+        
+    }
+    
     /**
      * Methode receivePlayer
      *
      * @param user Ein Parameter
      */
-    private void receivePlayer(String user){}
+    private void receivePlayer(String user){
+        
+    }
     
     /**
      * Method receiveLeaderboard
