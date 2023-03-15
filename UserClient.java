@@ -379,10 +379,12 @@ public class UserClient extends Client
     
     /**
      * Methode receiveSignedIn
-     *
+     * CALLED FROM processMessage()
+     * Method verifies SignIn
+     * 
      */
     private void receiveSignedIn(){
-        //phase change is handled by Status message
+        gui.signedIn(true,"");
     }
     
     /**
