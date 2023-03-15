@@ -17,6 +17,8 @@ public class UserClient extends Client
     private int[][] ownField = new int[10][10];
     private int[][] enemyField = new int[10][10];
     
+    private int[] ships = new int[5];
+    
     private Phase phase = Phase.LOGIN;
     private boolean yourTurn = false;
     
@@ -77,8 +79,9 @@ public class UserClient extends Client
      * @return Returns true if ship is valid, false otherwise
      */
     public boolean placeAt(int x1, int y1, int x2, int y2){
-        send("+SENDSHIPS");
+        int shipLength;
         int tmp;
+        
         if(x1 > x2){
             tmp = x1;
             x1 = x2;
@@ -89,6 +92,10 @@ public class UserClient extends Client
             tmp = y1;
             y1 = y2;
             y2 = tmp;
+        }
+        
+        if(x1-x2 == 0){
+            shipLength = y2-y1;
         }
         
         for(int i = x1-1; i <= x2+1; i++){
@@ -112,6 +119,7 @@ public class UserClient extends Client
                 return true;
             }
         }
+        
         return false;
     }
 
