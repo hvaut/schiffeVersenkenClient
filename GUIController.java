@@ -169,6 +169,16 @@ public class GUIController
         
     }
     
+    /**
+     * Methode displayErrorMessage
+     * displays an errorMessage to the user through gui
+     *
+     * @param errorMessage String
+     */
+    public void displayErrorMessage(String errorMessage){
+    
+    }
+    
     private void gameEnd()
     {
     
