@@ -196,7 +196,7 @@ public class UserClient extends Client
                     //currently no additions needed
                     break;
                 case "PLACE":
-                    //update ships array
+                    this.updateShips(elements);
                     break;
                 case "SHOOT":
                     //currently no additions needed
@@ -305,7 +305,8 @@ public class UserClient extends Client
         }
             /**
              * Methode updateShips
-             *
+             * Updates ships in this class and in gui
+             * 
              * @param elements String[] params of message from Server
              */
             private void updateShips(String[] elements){
