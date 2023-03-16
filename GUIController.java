@@ -125,10 +125,9 @@ public class GUIController
     //PLACEMENTPHASE
     /**
      * CALLED FROM CLIENT
-     * updates the own Field
+     * updates the OWN Field
      */
-    public void updateField()
-    {
+    public void updateField(int x, int y){
         
     }
     
@@ -169,12 +168,23 @@ public class GUIController
         
     }
     
+    /**
+     * CALLED FROM CLIENT
+     * Methode displayErrorMessage
+     * displays an errorMessage to the user through gui
+     *
+     * @param errorMessage String
+     */
+    public void displayErrorMessage(String errorMessage){
+    
+    }
+    
     private void gameEnd()
     {
     
     }
     
-    public void updateShips()
+    public void updateShips(List<Integer> ships)
     {
     
     }
