@@ -24,35 +24,9 @@ public class GUIController
      */
     public void nextPhase(Phase _nextPhase)
     {
-        //Quit active Application
-        switch (currState)
-        {
-            case LOGIN:
-                loginGUI.quit();
-                loginGUI = null;
-                break;
-            case LOBBY:
-                lobbyGUI = null;
-                break;
-            case PLACEMENT:
-                //placementGUI.quit();
-                //placementGUI = null;
-                break;
-            case GAME:
-                //gameGUI.quit();
-                //gameGUI = null;
-                break;
-            case EVALUATION:
-                //gameoverGUI.quit();
-                //gameoverGUI = null;
-                break;
-            default:
-                //impossible
-                break;
-        }
-        currState = _nextPhase;
+        
         //initializes new Window
-        switch (currState)
+        switch (_nextPhase)
         {
             case LOGIN:
                 loginGUI = new LoginGUI();
@@ -72,6 +46,37 @@ public class GUIController
                 //impossible
                 break;
         }
+        
+        //Quit active Application
+        switch (currState)
+        {
+            case LOGIN:
+                loginGUI.quit();
+                loginGUI = null;
+                break;
+            case LOBBY:
+                lobbyGUI.quit();
+                lobbyGUI = null;
+
+                break;
+            case PLACEMENT:
+                //placementGUI.quit();
+                //placementGUI = null;
+                break;
+            case GAME:
+                //gameGUI.quit();
+                //gameGUI = null;
+                break;
+            case EVALUATION:
+                //gameoverGUI.quit();
+                //gameoverGUI = null;
+                break;
+            default:
+                //impossible
+                break;
+        }
+        
+        currState = _nextPhase;
     }
     
     //LOGINPHASE

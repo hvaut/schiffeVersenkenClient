@@ -11,6 +11,8 @@ import javafx.scene.paint.Color;
 import javafx.collections.*;
 import javafx.scene.image.*;
 
+import javafx.application.Platform;
+
 /**
  *
  * Beschreibung
@@ -28,10 +30,10 @@ public class LoginGUI extends Application {
   private Label lSchiffeversenken = new Label();
   // Ende Attribute
   public static Stage staticStage = new Stage();
-  
+  private Pane root;
   
   public void start(Stage primaryStage) { 
-    Pane root = new Pane();
+    root = new Pane();
     Scene scene = new Scene(root, 484, 312);
     // Anfang Komponenten
     
@@ -77,7 +79,7 @@ public class LoginGUI extends Application {
     root.getChildren().add(lSchiffeversenken);
     // Ende Komponenten
     
-    primaryStage.setOnCloseRequest(e -> System.exit(0));
+    //primaryStage.setOnCloseRequest(e -> System.exit(0));
     primaryStage.setTitle("Login");
     primaryStage.setScene(scene);
     primaryStage.show();
@@ -87,7 +89,7 @@ public class LoginGUI extends Application {
   
   public void quit()
   {
-      System.out.println("quit");
+      ((Stage)root.getScene().getWindow()).close();
   }
   
   public static void main(String[] args) {
