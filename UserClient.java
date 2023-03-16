@@ -45,6 +45,7 @@ public class UserClient extends Client
     public void logIn(String name, String password){
         this.send("LOGIN:" + name + ":" + password);
     }
+    
     /**
      * CALLED FROM GUI:
      * Logs you out
@@ -53,6 +54,7 @@ public class UserClient extends Client
     public void logOut(){
         this.send("LOGOUT");
     }
+    
     /**
      * CALLED FROM GUI:
      * Asks the server to start a game against the choosen User ?challengePlayer?
@@ -61,13 +63,17 @@ public class UserClient extends Client
     public void startGame(String user) {
         send("REQUESTENEMY:"+user);
     }
+    
     /**
      * CALLED FROM GUI:
      * Asks the server to start a game against the choosen User ?startGame?
      *
      * @param user Ein Parameter
      */
-    public void challengePlayer(String user){}
+    public void challengePlayer(String user){
+        
+    }
+    
     /**
      * CALLED FROM GUI:
      * Controlls whether the choosen ship is valid placed.
@@ -400,11 +406,19 @@ public class UserClient extends Client
     }
     
     /**
-     * Methode receiveEnemy
-     *
+     * Methode rematch()
+     * CALLED FROM GUI
+     * Method request Rematch
+     * 
      * @param name Ein Parameter
      */
-    private void receiveEnemy(String name){
+    private void rematch(boolean rematch){
+        if(rematch){
+            send("REMATCH");
+        }
+        else{
+            send("+GETREMATCH false");
+        }
         
     }
     
