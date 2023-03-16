@@ -173,11 +173,9 @@ public class GUIController
     {
     
     }
-<<<<<<< HEAD
-}
-=======
-    public void updateShips(){
+    
+    public void updateShips()
+    {
     
     }
 }
->>>>>>> 167604936c7f020f4eb272adcf348f2fae993bff
