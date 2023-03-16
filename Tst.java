@@ -25,13 +25,17 @@ public class Tst extends Application {
     
     primaryStage.setResizable(false);
     primaryStage.setFullScreen(true);
+    int sizeButtonY =20;
+    int sizeButtonX =20;
+    int distanceY =10;
+    int distanceX =10;
     for(int i=0; i<10; i++){
         for(int j=0; j<10;j++){
             button[i][j]=new Button();
-            button[i][j].setLayoutX(30+30*i);
-            button[i][j].setLayoutY(40+30*j);
-            button[i][j].setPrefHeight(20);
-            button[i][j].setPrefWidth(20);
+            button[i][j].setLayoutX(40+(sizeButtonX+distanceX)*i);
+            button[i][j].setLayoutY(40+(sizeButtonY+distanceY)*j);
+            button[i][j].setPrefHeight(sizeButtonY);
+            button[i][j].setPrefWidth(sizeButtonX);
             final int c=i;
             final int d=j;
             button[i][j].setOnAction(
