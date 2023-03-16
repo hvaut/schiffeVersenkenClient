@@ -11,17 +11,22 @@ public class GUIController
     private LoginGUI loginGUI;
     private LobbyGUI lobbyGUI;
     
+    private UserClient client;
+    
     private boolean yourTurn = false;
-    public GUIController()
+    public GUIController(String ip, int port)
     {
-        currState = Phase.PLACEMENT;
+        //client = new UserClient(ip, port, this);
+        
         //instantiate LOGIN Screen
+        currState = Phase.LOGIN;
+        loginGUI = new LoginGUI(this);
     }
     
     //Exits the Application
     public void exit()
     {
-        System.exit(0);
+        System.exit(-1);
     }
     
     /**
@@ -34,14 +39,10 @@ public class GUIController
         switch (_nextPhase)
         {
             case LOGIN:
-                loginGUI = new LoginGUI();
-                //loginGUI.start(loginGUI.staticStage);
-                loginGUI.setController(this);
+                loginGUI = new LoginGUI(this);
                 break;
             case LOBBY:
-                lobbyGUI = new LobbyGUI();
-                //lobbyGUI.start(lobbyGUI.staticStage);
-                lobbyGUI.setController(this);
+                lobbyGUI = new LobbyGUI(this);
                 break;
             case PLACEMENT:
                 break;
@@ -64,7 +65,6 @@ public class GUIController
             case LOBBY:
                 lobbyGUI.quit();
                 lobbyGUI = null;
-
                 break;
             case PLACEMENT:
                 //placementGUI.quit();

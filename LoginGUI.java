@@ -36,7 +36,13 @@ public class LoginGUI extends Application {
     private Pane root;
     private GUIController controller;
     //
-
+    
+    public LoginGUI(GUIController newController)
+    {
+        controller = newController;
+        start(staticStage);
+    }
+    
     public void start(Stage primaryStage) { 
         root = new Pane();
         Scene scene = new Scene(root, 484, 312);
@@ -92,11 +98,6 @@ public class LoginGUI extends Application {
     } // end of public Login
 
     // Anfang Methoden
-    public void setController(GUIController newController)
-    {
-        controller = newController;
-        start(staticStage);
-    }
 
     public void quit()
     {

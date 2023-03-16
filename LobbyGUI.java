@@ -39,7 +39,13 @@ public class LobbyGUI extends Application {
     private GUIController controller;
     //
     // Ende Attribute
-
+    
+    public LobbyGUI(GUIController newController)
+    {
+        controller = newController;
+        start(staticStage);
+    }
+    
     public void start(Stage primaryStage) { 
         root = new Pane();
         Scene scene = new Scene(root, 1123, 903);
@@ -89,11 +95,6 @@ public class LobbyGUI extends Application {
     } // end of public LobbyGUI
 
     // Anfang Methoden
-    public void setController(GUIController newController)
-    {
-        controller = newController;
-        start(staticStage);
-    }
 
     public void quit()
     {
