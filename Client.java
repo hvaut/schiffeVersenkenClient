@@ -48,7 +48,7 @@ public abstract class Client
             {
                 try
                 {
-                	socket = new Socket(pServerIP, pServerPort);
+                    socket = new Socket(pServerIP, pServerPort);
                     toServer = new PrintWriter(socket.getOutputStream(), true);
                     fromServer = new BufferedReader(new InputStreamReader(socket.getInputStream()));
                 }
@@ -104,7 +104,7 @@ public abstract class Client
             socketWrapper = new SocketWrapper(pServerIP, pServerPort);
             start();
             if(socketWrapper.socket != null)
-            	active = true;
+                active = true;
         }
 
         public void run()
@@ -143,7 +143,7 @@ public abstract class Client
 
     public boolean isConnected()
     {
-   		return(messageHandler.active);
+           return(messageHandler.active);
     }
     
     public void send(String pMessage)

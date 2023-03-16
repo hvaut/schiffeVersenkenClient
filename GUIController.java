@@ -1,3 +1,5 @@
+import javafx.application.*;
+
 /**
  *  Class to control the different GameScreens
  */
@@ -5,10 +7,15 @@ public class GUIController
 {
     private Phase currState;
     
+    //GUI
+    private LoginGUI loginGUI;
+    private LobbyGUI lobbyGUI;
+    
     private boolean yourTurn = false;
-    private GUIController()
+    public GUIController()
     {
-        currState = Phase.LOGIN;
+        currState = Phase.PLACEMENT;
+        //instantiate LOGIN Screen
     }
     
     /**
@@ -17,7 +24,54 @@ public class GUIController
      */
     public void nextPhase(Phase _nextPhase)
     {
-        
+        //Quit active Application
+        switch (currState)
+        {
+            case LOGIN:
+                loginGUI.quit();
+                loginGUI = null;
+                break;
+            case LOBBY:
+                lobbyGUI = null;
+                break;
+            case PLACEMENT:
+                //placementGUI.quit();
+                //placementGUI = null;
+                break;
+            case GAME:
+                //gameGUI.quit();
+                //gameGUI = null;
+                break;
+            case EVALUATION:
+                //gameoverGUI.quit();
+                //gameoverGUI = null;
+                break;
+            default:
+                //impossible
+                break;
+        }
+        currState = _nextPhase;
+        //initializes new Window
+        switch (currState)
+        {
+            case LOGIN:
+                loginGUI = new LoginGUI();
+                loginGUI.start(loginGUI.staticStage);
+                break;
+            case LOBBY:
+                lobbyGUI = new LobbyGUI();
+                lobbyGUI.start(lobbyGUI.staticStage);
+                break;
+            case PLACEMENT:
+                break;
+            case GAME:
+                break;
+            case EVALUATION:
+                break;
+            default:
+                //impossible
+                break;
+        }
     }
     
     //LOGINPHASE
@@ -36,7 +90,8 @@ public class GUIController
      * CALLED FROM CLIENT
      * Method updates the List of available Players
      */
-    public void updatePlayerList(){
+    public void updatePlayerList(List<User> playerList)
+    {
         
     }
     
@@ -44,7 +99,7 @@ public class GUIController
      * CALLED FROM CLIENT
      * Method updates the Leaderboard
      */
-    public void updateLeaderboard()
+    public void updateLeaderboard(List<User> leaderList)
     {
         
     }
@@ -53,7 +108,7 @@ public class GUIController
      * CALLED FROM CLIENT
      * Method is called, if the a player challanged this client
      */
-    public void newChallange()
+    public void newChallange(String enemyName)
     {
         //Are you sure its called "Challange"?
     }
@@ -98,7 +153,7 @@ public class GUIController
     //GAMEENDPHASE
     /**
      * CALLED FROM CLIENT
-     * Method is called, if this client is received a rematch request
+     * Method is called, if this client has received a rematch request
      */
     public void rematchRequest()
     {
@@ -114,6 +169,13 @@ public class GUIController
         
     }
     
-    //Bitte einfuegen oder mit Client-Gruppe sprechen
-    public void gameEnd(){}
+    private void gameEnd()
+    {
+    
+    }
+    
+    public void updateShips()
+    {
+    
+    }
 }
