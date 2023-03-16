@@ -1,10 +1,10 @@
 /**
- * All return Events that can happen when you call processShot in the board class
+ * Events/states that an field can be
  * 
- * @author  Ole
+ * @author  Finn
  * @version 1
  */
 public enum FieldEvent
 {
-    MISS, HIT, SUNK, SHIP
+    MISS, HIT, SUNK, SHIP//null -> water
 }
