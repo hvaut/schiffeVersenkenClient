@@ -10,22 +10,12 @@ public class GUIController
     //GUI
     private LoginGUI loginGUI;
     private LobbyGUI lobbyGUI;
-    private PlacementGUI placementGUI;
-    private GameGUI gameGUI;
-    private GameOverGUI gameoverGUI;
     
     private boolean yourTurn = false;
     public GUIController()
     {
-        currState = Phase.LOGIN;
+        currState = Phase.PLACEMENT;
         //instantiate LOGIN Screen
-        loginGUI = new LoginGUI();
-        loginGUI.start(loginGUI.classStage);
-        loginGUI.setController(this);
- 
-        lobbyGUI = new LobbyGUI();
-        lobbyGUI.start(lobbyGUI.classStage);
-        lobbyGUI.setController(this);
     }
     
     /**
@@ -42,20 +32,19 @@ public class GUIController
                 loginGUI = null;
                 break;
             case LOBBY:
-                lobbyGUI.quit();
                 lobbyGUI = null;
                 break;
             case PLACEMENT:
                 //placementGUI.quit();
-                placementGUI = null;
+                //placementGUI = null;
                 break;
             case GAME:
                 //gameGUI.quit();
-                gameGUI = null;
+                //gameGUI = null;
                 break;
             case EVALUATION:
                 //gameoverGUI.quit();
-                gameoverGUI = null;
+                //gameoverGUI = null;
                 break;
             default:
                 //impossible
@@ -67,28 +56,17 @@ public class GUIController
         {
             case LOGIN:
                 loginGUI = new LoginGUI();
-                loginGUI.start(loginGUI.classStage);
-                loginGUI.setController(this);
+                loginGUI.start(loginGUI.staticStage);
                 break;
             case LOBBY:
                 lobbyGUI = new LobbyGUI();
-                lobbyGUI.start(lobbyGUI.classStage);
-                lobbyGUI.setController(this);
+                lobbyGUI.start(lobbyGUI.staticStage);
                 break;
             case PLACEMENT:
-                placementGUI = new PlacementGUI();
-                //placementGUI.start(placementGUI.classStage);
-                //placementGUI.setController(this);
                 break;
             case GAME:
-                gameGUI = new GameGUI();
-                //gameGUI.start(gameGUI.classStage);
-                //gameGUI.setController(this);
                 break;
             case EVALUATION:
-                gameoverGUI = new GameOverGUI();
-                //gameoverGUI.start(gameoverGUI.classStage);
-                //gameover.setcController(this);
                 break;
             default:
                 //impossible
@@ -192,6 +170,11 @@ public class GUIController
     }
     
     private void gameEnd()
+    {
+    
+    }
+    
+    public void updateShips()
     {
     
     }
