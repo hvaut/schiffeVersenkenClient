@@ -14,8 +14,8 @@ public class UserClient extends Client
      * 0 = water
      * 1 = ship
      */
-    private int[][] ownField = new int[10][10];
-    private int[][] enemyField = new int[10][10];
+    private FieldEvent[][] ownField = new FieldEvent[10][10];
+    private FieldEvent[][] enemyField = new FieldEvent[10][10];
     
     //ship[1] ==> shipLength 1
     private int[] ships = new int[6];
@@ -106,7 +106,7 @@ public class UserClient extends Client
         for(int i = x1-1; i <= x2+1; i++){
             for(int j = x1-1; j <= x2+1; j++){
                 if(i >= 0 && i <= 9 && j >= 0 && j<=9){
-                    if(ownField[i][j] != 0){
+                    if(ownField[i][j] != null){
                         return false;
                     }
                 }
@@ -117,7 +117,7 @@ public class UserClient extends Client
             if(x1 == x2 || y1 == y2){
                 for(int i = x1-1; i <= x2+1; i++){
                     for(int j = x1-1; j <= x2+1; j++){
-                        ownField[i][j] = 1;
+                        ownField[i][j] = FieldEvent.SHIP;
                     }
                 }
                 send("PLACE:" + x1 + x2 + ":" + y1 + y2);
@@ -285,14 +285,22 @@ public class UserClient extends Client
                     this.receivePlayable();
                     break;
                 case "FIELDUPDATE":
-                    int fieldID = Integer.parseInt(elements[1]);//2 -> Gegner // 1 -> eigenes Feld
+                    int fieldID = Integer.parseInt(elements[1]);//2 -> Enemy field // 1 -> own field
                     int x = Integer.parseInt(elements[2]);
                     int y = Integer.parseInt(elements[3]);
                     
-                    this.send("+FIELDUPDATE:" + x + ":" + y); 
-                    //position unklar, wie Position (siehe Protokoll) aufgeteilt (x & y)
-                    // events als int??
-                    // field ID?
+                    try{
+                        FieldEvent event = this.findEventForString(elements[4]);
+                        if(fieldID == 1){//own field
+                            this.receiveFieldUpdate(true, x, y, event);
+                        }else{//enemy field
+                            this.receiveFieldUpdate(false, x, y, event);
+                        }
+                    }catch(Exception e){
+                        this.gui.displayErrorMessage(e.getMessage());
+                    }finally{
+                        this.send("+FIELDUPDATE:" + x + ":" + y);
+                    }
                     break;
                 case "RESULT":
                     this.send("+RESULT");
@@ -305,7 +313,27 @@ public class UserClient extends Client
                     System.out.println("Error at processPositiveResponse with:" + elements[0]);
                     break;
             };
-        }
+        }   
+            /**
+             * Method findEventForString
+             *
+             * @param message String Event that needs to be changed into a FieldEvent Object
+             * @return event FieldEvent
+             */
+            private FieldEvent findEventForString(String event)throws Exception{
+                switch(event){
+                    case "HIT":
+                        return FieldEvent.HIT;
+                    case "MISS":
+                        return FieldEvent.MISS;
+                    case "SHIP":
+                        return FieldEvent.SHIP;
+                    case "SUNK":
+                        return FieldEvent.SUNK;
+                    default:
+                        throw new Exception("Unknown FieldEvent:" + event);
+                }
+            }
             /**
              * Methode updateShips
              * Updates ships in this class and in gui
@@ -378,10 +406,14 @@ public class UserClient extends Client
      * @param y Y-Coordinate of the field
      * @param state New state of the field
      */
-    private void receiveFieldUpdate(boolean you, int x, int y, int state){
-        if(you) ownField[x][y] = state;
-        else enemyField[x][y] = state;
-        gui.updateFields();
+    private void receiveFieldUpdate(boolean you, int x, int y, FieldEvent event){
+        if(you){
+            ownField[x][y] = event;
+            this.gui.updateOwnField(this.ownField);
+        }else{
+            enemyField[x][y] = event;
+            this.gui.updateEnemyField(this.enemyField);
+        }
     }
     
     /**

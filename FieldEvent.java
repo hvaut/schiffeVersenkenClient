@@ -4,7 +4,7 @@
  * @author  Ole
  * @version 1
  */
-public enum ShotEvent
+public enum FieldEvent
 {
-    FAILED, MISS, HIT, SUNK
+    MISS, HIT, SUNK, SHIP
 }

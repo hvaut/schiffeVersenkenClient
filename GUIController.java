@@ -122,21 +122,20 @@ public class GUIController
         
     }
     
-    //PLACEMENTPHASE
+    //PLACEMENTPHASE & GAMEPHASE
     /**
      * CALLED FROM CLIENT
      * updates the OWN Field
      */
-    public void updateField(int x, int y){
+    public void updateOwnField(FieldEvent[][] ownField){
         
     }
     
-    //GAMEPHASE
     /**
      * CALLED FROM CLIENT
-     * Method updates both fields (enemy and own)
+     * Method updates enemy field
      */
-    public void updateFields()
+    public void updateEnemyField(FieldEvent[][] enemyField)
     {
         
     }
