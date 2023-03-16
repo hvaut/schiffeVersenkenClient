@@ -11,11 +11,22 @@ public class GUIController
     private LoginGUI loginGUI;
     private LobbyGUI lobbyGUI;
     
+    private UserClient client;
+    
     private boolean yourTurn = false;
-    public GUIController()
+    public GUIController(String ip, int port)
     {
-        currState = Phase.PLACEMENT;
+        //client = new UserClient(ip, port, this);
+        
         //instantiate LOGIN Screen
+        currState = Phase.LOGIN;
+        loginGUI = new LoginGUI(this);
+    }
+    
+    //Exits the Application
+    public void exit()
+    {
+        System.exit(-1);
     }
     
     /**
@@ -24,7 +35,27 @@ public class GUIController
      */
     public void nextPhase(Phase _nextPhase)
     {
-        //Quit active Application
+        //initializes new Window
+        switch (_nextPhase)
+        {
+            case LOGIN:
+                loginGUI = new LoginGUI(this);
+                break;
+            case LOBBY:
+                lobbyGUI = new LobbyGUI(this);
+                break;
+            case PLACEMENT:
+                break;
+            case GAME:
+                break;
+            case EVALUATION:
+                break;
+            default:
+                //impossible
+                break;
+        }
+        
+        //Quit active Window
         switch (currState)
         {
             case LOGIN:
@@ -32,6 +63,7 @@ public class GUIController
                 loginGUI = null;
                 break;
             case LOBBY:
+                lobbyGUI.quit();
                 lobbyGUI = null;
                 break;
             case PLACEMENT:
@@ -51,27 +83,6 @@ public class GUIController
                 break;
         }
         currState = _nextPhase;
-        //initializes new Window
-        switch (currState)
-        {
-            case LOGIN:
-                loginGUI = new LoginGUI();
-                loginGUI.start(loginGUI.staticStage);
-                break;
-            case LOBBY:
-                lobbyGUI = new LobbyGUI();
-                lobbyGUI.start(lobbyGUI.staticStage);
-                break;
-            case PLACEMENT:
-                break;
-            case GAME:
-                break;
-            case EVALUATION:
-                break;
-            default:
-                //impossible
-                break;
-        }
     }
     
     //LOGINPHASE
