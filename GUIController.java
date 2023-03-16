@@ -174,7 +174,7 @@ public class GUIController
     
     }
     
-    public void updateShips()
+    public void updateShips(List<Integer> ships)
     {
     
     }
