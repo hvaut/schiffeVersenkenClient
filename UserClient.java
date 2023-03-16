@@ -313,8 +313,15 @@ public class UserClient extends Client
                         int amount = Integer.parseInt(elements[i]);
                         this.ships[i] = amount;
                     }
-                    
+                
             }
+                private List<Integer> makeList(int[] arr){
+                     List<Integer> list = new List<>();
+                     for(int amount: arr){
+                        list.append(amount);
+                        }
+                    return list;
+                }
             /**
              * Method findPhaseForString
              *
