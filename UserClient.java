@@ -313,8 +313,15 @@ public class UserClient extends Client
                         int amount = Integer.parseInt(elements[i]);
                         this.ships[i] = amount;
                     }
-                
+                this.gui.updateShips(this.makeList(this.ships));
             }
+                /**
+                 * Methode makeList
+                 * Turns an array into a List
+                 * 
+                 * @param arr int[]
+                 * @return liste List<Integer>
+                 */
                 private List<Integer> makeList(int[] arr){
                      List<Integer> list = new List<>();
                      for(int amount: arr){
