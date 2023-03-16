@@ -18,23 +18,30 @@ public class GUIController
         //instantiate LOGIN Screen
     }
     
+    //Exits the Application
+    public void exit()
+    {
+        System.exit(0);
+    }
+    
     /**
      * CALLED FROM CLIENT
      * initializes the Phase: "_nextPhase"
      */
     public void nextPhase(Phase _nextPhase)
     {
-        
         //initializes new Window
         switch (_nextPhase)
         {
             case LOGIN:
                 loginGUI = new LoginGUI();
-                loginGUI.start(loginGUI.staticStage);
+                //loginGUI.start(loginGUI.staticStage);
+                loginGUI.setController(this);
                 break;
             case LOBBY:
                 lobbyGUI = new LobbyGUI();
-                lobbyGUI.start(lobbyGUI.staticStage);
+                //lobbyGUI.start(lobbyGUI.staticStage);
+                lobbyGUI.setController(this);
                 break;
             case PLACEMENT:
                 break;
@@ -47,7 +54,7 @@ public class GUIController
                 break;
         }
         
-        //Quit active Application
+        //Quit active Window
         switch (currState)
         {
             case LOGIN:
@@ -75,7 +82,6 @@ public class GUIController
                 //impossible
                 break;
         }
-        
         currState = _nextPhase;
     }
     

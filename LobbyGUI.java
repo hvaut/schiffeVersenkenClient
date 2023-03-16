@@ -10,8 +10,6 @@ import javafx.geometry.*;
 import javafx.scene.text.*;
 import javafx.scene.text.Font;
 
-import javafx.application.Platform;
-
 /**
  *
  * Beschreibung
@@ -32,8 +30,14 @@ public class LobbyGUI extends Application {
     private Label lPlayerOnline = new Label();
     private Label lLeaderboard = new Label();
 
+    //IMPORTANT!!!
+    // staticStage -> needed to start Application (startMethod called in setController)
+    // root -> Pane must be defined here, and NOT in the start method. root must be accessible from the quit() method
+    // GUIController -> refference to the GUI controller needed for communication.
     public static Stage staticStage = new Stage();
     private Pane root;
+    private GUIController controller;
+    //
     // Ende Attribute
 
     public void start(Stage primaryStage) { 
@@ -77,6 +81,7 @@ public class LobbyGUI extends Application {
         root.getChildren().add(lLeaderboard);
         // Ende Komponenten
 
+        //MUSS AUSKOMMENTIERT WERDEN!!! SONST WIRD BEIM SCHLIESSEN DES FENSTERS DIE APPLICATION GESCHLOSSEN!!!
         //primaryStage.setOnCloseRequest(e -> System.exit(0));
         primaryStage.setTitle("LobbyGUI");
         primaryStage.setScene(scene);
@@ -84,7 +89,12 @@ public class LobbyGUI extends Application {
     } // end of public LobbyGUI
 
     // Anfang Methoden
-    
+    public void setController(GUIController newController)
+    {
+        controller = newController;
+        start(staticStage);
+    }
+
     public void quit()
     {
         ((Stage)root.getScene().getWindow()).close();
