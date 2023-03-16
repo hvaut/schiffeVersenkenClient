@@ -220,34 +220,35 @@ public class UserClient extends Client
             switch(elements[0]){
                 case "LOGIN":
                     errorMessage = elements[1];
-                    //ErrorMessage, probably with JOptionPane
+                    this.gui.displayErrorMessage(errorMessage);
                     break;
                 case "LOGOUT":
                     errorMessage = elements[1];
-                    //ErrorMessage, probably with JOptionPane
+                    this.gui.displayErrorMessage(errorMessage);
                     break;
                 case "LEADERBOARD":
                     errorMessage = elements[1];
-                    //ErrorMessage, probably with JOptionPane
+                    this.gui.displayErrorMessage(errorMessage);
                     break;
                 case "GETENEMIES":
                     errorMessage = elements[1];
-                    //ErrorMessage, probably with JOptionPane
+                    this.gui.displayErrorMessage(errorMessage);
                     break;
                 case "REQUESTENEMY":
                     errorMessage = elements[1];
-                    //ErrorMessage, probably with JOptionPane
+                    this.gui.displayErrorMessage(errorMessage);
                     break;
                 case "PLACE":
                     errorMessage = elements[1];
-                    //ErrorMessage, probably with JOptionPane
+                    this.gui.displayErrorMessage(errorMessage);
                     break;
                 case "SHOOT":
                     errorMessage = elements[1];
-                    //ErrorMessage, probably with JOptionPane
+                    this.gui.displayErrorMessage(errorMessage);
                     break;
                 default:
-                    System.out.println("Error at processNegativeResponse with:" + elements[0]);
+                    errorMessage = "Error at processNegativeResponse with command:" + elements[0];
+                    this.gui.displayErrorMessage(errorMessage);
                     break;
             };
         }
@@ -284,9 +285,11 @@ public class UserClient extends Client
                     this.receivePlayable();
                     break;
                 case "FIELDUPDATE":
-                    int x;
-                    int y;
-                    this.send("+FIELDUPDATE"); // positition ergänzen
+                    int fieldID = Integer.parseInt(elements[1]);//2 -> Gegner // 1 -> eigenes Feld
+                    int x = Integer.parseInt(elements[2]);
+                    int y = Integer.parseInt(elements[3]);
+                    
+                    this.send("+FIELDUPDATE:" + x + ":" + y); 
                     //position unklar, wie Position (siehe Protokoll) aufgeteilt (x & y)
                     // events als int??
                     // field ID?
