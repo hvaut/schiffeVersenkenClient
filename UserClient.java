@@ -45,6 +45,7 @@ public class UserClient extends Client
     public void logIn(String name, String password){
         this.send("LOGIN:" + name + ":" + password);
     }
+    
     /**
      * CALLED FROM GUI:
      * Logs you out
@@ -53,6 +54,7 @@ public class UserClient extends Client
     public void logOut(){
         this.send("LOGOUT");
     }
+    
     /**
      * CALLED FROM GUI:
      * Asks the server to start a game against the choosen User ?challengePlayer?
@@ -61,13 +63,17 @@ public class UserClient extends Client
     public void startGame(String user) {
         send("REQUESTENEMY:"+user);
     }
+    
     /**
      * CALLED FROM GUI:
      * Asks the server to start a game against the choosen User ?startGame?
      *
      * @param user Ein Parameter
      */
-    public void challengePlayer(String user){}
+    public void challengePlayer(String user){
+        
+    }
+    
     /**
      * CALLED FROM GUI:
      * Controlls whether the choosen ship is valid placed.
@@ -196,7 +202,7 @@ public class UserClient extends Client
                     //currently no additions needed
                     break;
                 case "PLACE":
-                    //update ships array
+                    this.updateShips(elements);
                     break;
                 case "SHOOT":
                     //currently no additions needed
@@ -220,34 +226,35 @@ public class UserClient extends Client
             switch(elements[0]){
                 case "LOGIN":
                     errorMessage = elements[1];
-                    //ErrorMessage, probably with JOptionPane
+                    this.gui.displayErrorMessage(errorMessage);
                     break;
                 case "LOGOUT":
                     errorMessage = elements[1];
-                    //ErrorMessage, probably with JOptionPane
+                    this.gui.displayErrorMessage(errorMessage);
                     break;
                 case "LEADERBOARD":
                     errorMessage = elements[1];
-                    //ErrorMessage, probably with JOptionPane
+                    this.gui.displayErrorMessage(errorMessage);
                     break;
                 case "GETENEMIES":
                     errorMessage = elements[1];
-                    //ErrorMessage, probably with JOptionPane
+                    this.gui.displayErrorMessage(errorMessage);
                     break;
                 case "REQUESTENEMY":
                     errorMessage = elements[1];
-                    //ErrorMessage, probably with JOptionPane
+                    this.gui.displayErrorMessage(errorMessage);
                     break;
                 case "PLACE":
                     errorMessage = elements[1];
-                    //ErrorMessage, probably with JOptionPane
+                    this.gui.displayErrorMessage(errorMessage);
                     break;
                 case "SHOOT":
                     errorMessage = elements[1];
-                    //ErrorMessage, probably with JOptionPane
+                    this.gui.displayErrorMessage(errorMessage);
                     break;
                 default:
-                    System.out.println("Error at processNegativeResponse with:" + elements[0]);
+                    errorMessage = "Error at processNegativeResponse with command:" + elements[0];
+                    this.gui.displayErrorMessage(errorMessage);
                     break;
             };
         }
@@ -284,9 +291,11 @@ public class UserClient extends Client
                     this.receivePlayable();
                     break;
                 case "FIELDUPDATE":
-                    int x;
-                    int y;
-                    this.send("+FIELDUPDATE"); // positition ergänzen
+                    int fieldID = Integer.parseInt(elements[1]);//2 -> Gegner // 1 -> eigenes Feld
+                    int x = Integer.parseInt(elements[2]);
+                    int y = Integer.parseInt(elements[3]);
+                    
+                    this.send("+FIELDUPDATE:" + x + ":" + y); 
                     //position unklar, wie Position (siehe Protokoll) aufgeteilt (x & y)
                     // events als int??
                     // field ID?
@@ -305,7 +314,8 @@ public class UserClient extends Client
         }
             /**
              * Methode updateShips
-             *
+             * Updates ships in this class and in gui
+             * 
              * @param elements String[] params of message from Server
              */
             private void updateShips(String[] elements){
@@ -313,8 +323,22 @@ public class UserClient extends Client
                         int amount = Integer.parseInt(elements[i]);
                         this.ships[i] = amount;
                     }
-                    
+                this.gui.updateShips(this.makeList(this.ships));
             }
+                /**
+                 * Methode makeList
+                 * Turns an array into a List
+                 * 
+                 * @param arr int[]
+                 * @return liste List<Integer>
+                 */
+                private List<Integer> makeList(int[] arr){
+                     List<Integer> list = new List<>();
+                     for(int amount: arr){
+                        list.append(amount);
+                        }
+                    return list;
+                }
             /**
              * Method findPhaseForString
              *
@@ -400,11 +424,19 @@ public class UserClient extends Client
     }
     
     /**
-     * Methode receiveEnemy
-     *
+     * Methode rematch()
+     * CALLED FROM GUI
+     * Method request Rematch
+     * 
      * @param name Ein Parameter
      */
-    private void receiveEnemy(String name){
+    private void rematch(boolean rematch){
+        if(rematch){
+            send("REMATCH");
+        }
+        else{
+            send("+GETREMATCH false");
+        }
         
     }
     
