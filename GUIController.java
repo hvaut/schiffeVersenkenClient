@@ -88,10 +88,9 @@ public class GUIController
     //LOGINPHASE
     /**
      * CALLED FROM CLIENT
-     * if boolean _successfull is true, the login was successfull
-     * if String _errorMessage is not null, the login wan't successfull. Errormessage is in the String
+     * if this method gets called, the player has signed in
      */
-    public void signedIn(boolean _successfull, String _errorMessage)
+    public void signedIn()
     {
         
     }

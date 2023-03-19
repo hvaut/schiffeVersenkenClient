@@ -272,7 +272,7 @@ public class UserClient extends Client
                         Phase phase = this.findPhaseForString(elements[1]);
                         this.changePhase(phase);
                     }catch(Exception e){
-                        //ErrorMessage, probably with JOptionPane
+                        this.gui.displayErrorMessage(e.getMessage());
                     }
                     break;
                 case "ENEMIES":
@@ -291,9 +291,9 @@ public class UserClient extends Client
                     this.receivePlayable();
                     break;
                 case "FIELDUPDATE":
-                    int fieldID = Integer.parseInt(elements[1]);//2 -> Enemy field // 1 -> own field
-                    int x = Integer.parseInt(elements[2]);
-                    int y = Integer.parseInt(elements[3]);
+                    int fieldID = Integer.parseInt(elements[3]);//2 -> Enemy field // 1 -> own field
+                    int x = Integer.parseInt(elements[1]);
+                    int y = Integer.parseInt(elements[2]);
                     
                     try{
                         FieldEvent event = this.findEventForString(elements[4]);
@@ -452,7 +452,7 @@ public class UserClient extends Client
      * 
      */
     private void receiveSignedIn(){
-        gui.signedIn(true,"");
+        gui.signedIn();
     }
     
     /**
