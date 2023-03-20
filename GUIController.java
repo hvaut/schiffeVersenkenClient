@@ -10,6 +10,7 @@ public class GUIController
     //GUI
     private LoginGUI loginGUI;
     private LobbyGUI lobbyGUI;
+    private PlacementGUI placementGUI;
     
     private UserClient client;
     
@@ -45,6 +46,7 @@ public class GUIController
                 lobbyGUI = new LobbyGUI(this);
                 break;
             case PLACEMENT:
+                placementGUI = new PlacementGUI(this);
                 break;
             case GAME:
                 break;
@@ -67,8 +69,8 @@ public class GUIController
                 lobbyGUI = null;
                 break;
             case PLACEMENT:
-                //placementGUI.quit();
-                //placementGUI = null;
+                placementGUI.quit();
+                placementGUI = null;
                 break;
             case GAME:
                 //gameGUI.quit();
