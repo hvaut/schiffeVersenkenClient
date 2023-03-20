@@ -33,11 +33,6 @@ public class GUIController
         loginGUI = new LoginGUI(this);
     }
     
-    public void ALERT()
-    {
-        
-    }
-    
     //Exits the Application
     public void exit()
     {
@@ -196,7 +191,8 @@ public class GUIController
      * CALLED FROM CLIENT
      * Method is called, if the rematch request has been denied
      */
-    public void rematchDenied(){
+    public void rematchDenied()
+    {
         
     }
     
@@ -207,8 +203,10 @@ public class GUIController
      *
      * @param errorMessage String
      */
-    public void displayErrorMessage(String errorMessage){
-    
+    public void displayErrorMessage(String errorMessage)
+    {
+        alert.setContentText(errorMessage);
+        alert.show();
     }
     
     private void gameEnd()
