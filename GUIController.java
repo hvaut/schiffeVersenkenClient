@@ -26,7 +26,7 @@ public class GUIController
     //Exits the Application
     public void exit()
     {
-        System.exit(-1);
+        System.exit(0);
     }
     
     /**
