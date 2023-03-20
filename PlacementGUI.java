@@ -21,7 +21,22 @@ import javafx.scene.image.*;
 public class PlacementGUI extends Application {
   // Anfang Attribute
   private Button button[][] = new Button[10][10];
+  
+  //IMPORTANT!!!
+    // staticStage -> needed to start Application (startMethod called in setController)
+    // root -> Pane must be defined here, and NOT in the start method. root must be accessible from the quit() method
+    // GUIController -> refference to the GUI controller needed for communication.
+    public static Stage staticStage = new Stage();
+    private Pane root;
+    private GUIController controller;
+    //
   // Ende Attribute
+  
+  public PlacementGUI(GUIController newController)
+    {
+        controller = newController;
+        start(staticStage);
+    }
   
   public void start(Stage primaryStage) { 
     Pane root = new Pane();
@@ -49,19 +64,24 @@ public class PlacementGUI extends Application {
     }
     // Ende Komponenten
     
-    primaryStage.setOnCloseRequest(e -> System.exit(0));
+    //primaryStage.setOnCloseRequest(e -> System.exit(0));
     primaryStage.setTitle("PlacementGUI");
     primaryStage.setScene(scene);
     primaryStage.show();
     // Ende Komponenten
     
-    primaryStage.setOnCloseRequest(e -> System.exit(0));
+    //primaryStage.setOnCloseRequest(e -> System.exit(0));
     primaryStage.setTitle("PlacementGui");
     primaryStage.setScene(scene);
     primaryStage.show();
   } // end of public PlacementGui
   
   // Anfang Methoden
+  
+  public void quit()
+    {
+        ((Stage)root.getScene().getWindow()).close();
+    }
   
   public static void main(String[] args) {
     launch(args);
