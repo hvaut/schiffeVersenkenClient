@@ -441,15 +441,6 @@ public class UserClient extends Client
     }
     
     /**
-     * Methode receivePlayer
-     *
-     * @param user Ein Parameter
-     */
-    private void receivePlayer(String user){
-        
-    }
-    
-    /**
      * Method receiveLeaderboard
      * CALLED FROM processMessage()
      * Method updates the leaderboard
