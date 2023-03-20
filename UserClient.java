@@ -30,9 +30,11 @@ public class UserClient extends Client
      * @param port Ein Parameter
      * @param gui Ein Parameter
      */
-    public UserClient(String ip, int port, GUIController gui){
+    public UserClient(String ip, int port, GUIController gui)throws Exception{
         super(ip, port);
         this.gui=gui;
+        if(!this.isConnected())
+            throw new Exception("No Connection");
     }
 
     /**
