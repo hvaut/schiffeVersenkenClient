@@ -26,7 +26,7 @@ public class GUIController
     //Exits the Application
     public void exit()
     {
-        System.exit(-1);
+        System.exit(0);
     }
     
     /**
@@ -88,10 +88,9 @@ public class GUIController
     //LOGINPHASE
     /**
      * CALLED FROM CLIENT
-     * if boolean _successfull is true, the login was successfull
-     * if String _errorMessage is not null, the login wan't successfull. Errormessage is in the String
+     * if this method gets called, the player has signed in
      */
-    public void signedIn(boolean _successfull, String _errorMessage)
+    public void signedIn()
     {
         
     }
@@ -133,21 +132,20 @@ public class GUIController
         
     }
     
-    //PLACEMENTPHASE
+    //PLACEMENTPHASE & GAMEPHASE
     /**
      * CALLED FROM CLIENT
      * updates the OWN Field
      */
-    public void updateField(int x, int y){
+    public void updateOwnField(FieldEvent[][] ownField){
         
     }
     
-    //GAMEPHASE
     /**
      * CALLED FROM CLIENT
-     * Method updates both fields (enemy and own)
+     * Method updates enemy field
      */
-    public void updateFields()
+    public void updateEnemyField(FieldEvent[][] enemyField)
     {
         
     }
