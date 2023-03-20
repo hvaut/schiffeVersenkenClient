@@ -1,4 +1,6 @@
 import javafx.application.*;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 
 /**
  *  Class to control the different GameScreens
@@ -14,14 +16,26 @@ public class GUIController
     
     private UserClient client;
     
+    private Alert alert = new Alert(AlertType.WARNING);
+    
     private boolean yourTurn = false;
     public GUIController(String ip, int port)
     {
-        //client = new UserClient(ip, port, this);
-        
+        try
+        {
+            client = new UserClient(ip, port, this);
+        }catch(Exception e)
+        {
+            displayErrorMessage(e.getMessage());
+        }
         //instantiate LOGIN Screen
         currState = Phase.LOGIN;
         loginGUI = new LoginGUI(this);
+    }
+    
+    public void ALERT()
+    {
+        
     }
     
     //Exits the Application
