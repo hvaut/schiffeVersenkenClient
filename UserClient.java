@@ -66,15 +66,6 @@ public class UserClient extends Client
         send("REQUESTENEMY:"+user);
     }
     
-    /**
-     * CALLED FROM GUI:
-     * Asks the server to start a game against the choosen User ?startGame?
-     *
-     * @param user Ein Parameter
-     */
-    public void challengePlayer(String user){
-        
-    }
     
     /**
      * CALLED FROM GUI:
@@ -466,12 +457,11 @@ public class UserClient extends Client
      */
     private void rematch(boolean rematch){
         if(rematch){
-            send("REMATCH");
+            send("REMATCH");//rematch button pressed
         }
         else{
-            send("+GETREMATCH false");
+            send("+GETREMATCH:false");//player changed to lobby
         }
-        
     }
     
     /**

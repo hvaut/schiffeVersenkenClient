@@ -174,8 +174,7 @@ public class GUIController
      * CALLED FROM CLIENT
      * Method is called, if the rematch request has been denied
      */
-    public void rematchDenied()
-    {
+    public void rematchDenied(){
         
     }
     
