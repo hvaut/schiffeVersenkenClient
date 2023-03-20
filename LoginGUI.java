@@ -110,7 +110,7 @@ public class LoginGUI extends Application {
 
     public void bLogin_Action(Event evt) {
         // TODO hier Quelltext einfuegen
-        controller.nextPhase(Phase.LOBBY);
+        controller.tryLogin(tfUsername.getText(), tfPassword.getText());
     } // end of bLogin_Action
 
     // Ende Methoden

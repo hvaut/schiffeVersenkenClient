@@ -96,6 +96,14 @@ public class GUIController
     {
         
     }
+    /**
+     * CALLED FROM GUI
+     * SEND TO CLIENT
+     */
+    public void tryLogin(String name, String password)
+    {
+        client.logIn(name, password);
+    }
     
     //LOBBYPHASE
     /**
