@@ -39,7 +39,7 @@ public class PlacementGUI extends Application {
     }
   
   public void start(Stage primaryStage) { 
-    Pane root = new Pane();
+    root = new Pane();
     Scene scene = new Scene(root, 284, 262);
     // Anfang Komponenten
     
@@ -71,7 +71,7 @@ public class PlacementGUI extends Application {
     // Ende Komponenten
     
     //primaryStage.setOnCloseRequest(e -> System.exit(0));
-    primaryStage.setTitle("PlacementGui");
+    primaryStage.setTitle("PlacementGUI");
     primaryStage.setScene(scene);
     primaryStage.show();
   } // end of public PlacementGui
