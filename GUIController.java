@@ -36,7 +36,13 @@ public class GUIController
     //Exits the Application
     public void exit()
     {
-        System.exit(0);
+        try
+        {
+            System.exit(0);
+        }catch(Exception e)
+        {
+            displayErrorMessage(e.getMessage());
+        }
     }
     
     /**
@@ -205,6 +211,7 @@ public class GUIController
      */
     public void displayErrorMessage(String errorMessage)
     {
+        alert.setHeaderText("Warnung!");
         alert.setContentText(errorMessage);
         alert.show();
     }

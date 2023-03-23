@@ -19,7 +19,8 @@ import javafx.scene.image.*;
  * @author 
  */
 
-public class LoginGUI extends Application {
+public class LoginGUI extends Application
+{
     // Anfang Attribute
     private TextField tfUsername = new TextField();
     private TextField tfPassword = new TextField();
@@ -43,7 +44,8 @@ public class LoginGUI extends Application {
         start(staticStage);
     }
     
-    public void start(Stage primaryStage) { 
+    public void start(Stage primaryStage)
+    { 
         root = new Pane();
         Scene scene = new Scene(root, 484, 312);
         // Anfang Komponenten
@@ -104,12 +106,13 @@ public class LoginGUI extends Application {
         ((Stage)root.getScene().getWindow()).close();
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args)
+    {
         launch(args);
     } // end of main
 
-    public void bLogin_Action(Event evt) {
-        // TODO hier Quelltext einfuegen
+    public void bLogin_Action(Event evt)
+    {
         controller.tryLogin(tfUsername.getText(), tfPassword.getText());
     } // end of bLogin_Action
 
