@@ -24,10 +24,10 @@ public class GameGUI extends Application {
     private Label lDubistamZug = new Label();
     private Label lBuchstabe1[] = new Label[10];
     private Label lZahl1[] = new Label[10];
-    private Button bFeld1[][] = new Button[10][10];
+    private Button bYourField[][] = new Button[10][10];
     private Label lBuchstabe2[] = new Label[10];
     private Label lZahl2[] = new Label[10];
-    private Button bFeld2[][] = new Button[10][10];
+    private Button bEnemyField[][] = new Button[10][10];
     // Ende Attribute
     
     //IMPORTANT!!!
@@ -100,15 +100,15 @@ public class GameGUI extends Application {
             for(int j=0; j<10; j++){
                 final int x = i;
                 final int y=j;
-                bFeld1[i][j] = new Button();
-                bFeld1[i][j].setLayoutX(90+50*i);
-                bFeld1[i][j].setLayoutY(300+50*j);
-                bFeld1[i][j].setPrefHeight(30);
-                bFeld1[i][j].setPrefWidth(30);
-                bFeld1[i][j].setOnAction(
-                    (event) -> {bFeld1_Action(x, y);} 
+                bYourField[i][j] = new Button();
+                bYourField[i][j].setLayoutX(90+50*i);
+                bYourField[i][j].setLayoutY(300+50*j);
+                bYourField[i][j].setPrefHeight(30);
+                bYourField[i][j].setPrefWidth(30);
+                bYourField[i][j].setOnAction(
+                    (event) -> {bYourField_Action(x, y);} 
                 );
-                root.getChildren().add(bFeld1[i][j]);
+                root.getChildren().add(bYourField[i][j]);
             }
         }
         
@@ -134,15 +134,15 @@ public class GameGUI extends Application {
             for(int j=0; j<10; j++){
                 final int x = i;
                 final int y=j;
-                bFeld2[i][j] = new Button();
-                bFeld2[i][j].setLayoutX(90+50*i+640);
-                bFeld2[i][j].setLayoutY(300+50*j);
-                bFeld2[i][j].setPrefHeight(30);
-                bFeld2[i][j].setPrefWidth(30);
-                bFeld2[i][j].setOnAction(
-                    (event) -> {bFeld2_Action(x, y);} 
+                bEnemyField[i][j] = new Button();
+                bEnemyField[i][j].setLayoutX(90+50*i+640);
+                bEnemyField[i][j].setLayoutY(300+50*j);
+                bEnemyField[i][j].setPrefHeight(30);
+                bEnemyField[i][j].setPrefWidth(30);
+                bEnemyField[i][j].setOnAction(
+                    (event) -> {bEnemyField_Action(x, y);} 
                 );
-                root.getChildren().add(bFeld2[i][j]);
+                root.getChildren().add(bEnemyField[i][j]);
             }
         }  
         // Ende Komponenten
@@ -174,15 +174,14 @@ public class GameGUI extends Application {
     } // end of main
 
     /**
-     * Informs the GUIController over a pressed button on field 1
+     * Informs the GUIController over a pressed button on your Field
      *
      * @param x X-Coordinate of the pressed button
      * @param y Y-Coordinate of the pressed button
      */
-    public void bFeld1_Action(int x, int y) {
+    public void bYourField_Action(int x, int y) {
         // TODO hier Quelltext einfuegen
-
-    } // end of bFeld1_Action
+    } // end of bYourField_Action
     
     /**
      * Informs the GUIController over a pressed button on field 2
@@ -190,9 +189,33 @@ public class GameGUI extends Application {
      * @param x X-Coordinate of the pressed button
      * @param y Y-Coordinate of the pressed buttonr
      */
-    public void bFeld2_Action(int x, int y) {
+    public void bEnemyField_Action(int x, int y) {
         // TODO hier Quelltext einfuegen
 
     } 
+    
+    public void receiveFieldUpdate(boolean yourField, int x, int y, FieldEvent fieldEvent){
+        Button changed;
+        if(yourField)changed = bYourField[x][y];
+        else changed = bEnemyField[x][y];
+        switch (fieldEvent){
+            case MISS:
+                changed.setStyle("-fx-text-fill: blue; -fx-font-size: 16px;");
+                changed.setText("Ö");
+                break;
+            case HIT:
+                changed.setStyle("-fx-text-fill: red; -fx-font-size: 16px;");
+                changed.setText("X");
+                break;
+            case SUNK: 
+                changed.setStyle("-fx-text-fill: black; -fx-font-size: 16px;");
+                changed.setStyle("-fx-background-color: red");
+                changed.setText("X");
+                break;
+            case SHIP:
+                changed.setStyle("-fx-text-fill: black; -fx-font-size: 16px;");
+                changed.setText("X");
+        }
+    }
     // Ende Methoden
 } // end of class GameGUI
