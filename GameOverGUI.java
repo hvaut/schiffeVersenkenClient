@@ -94,6 +94,7 @@ public class GameOverGUI extends Application {
     photo.setRotate(270);
     photo.setFitWidth(300);
     photo.setFitHeight(200);
+    photo.setPickOnBounds(true);
     //for(int i=0; i<18; i++){
     //    photos[i]=new Image("lk_foto/" + i +".JPG");
     //}
@@ -102,6 +103,9 @@ public class GameOverGUI extends Application {
     photos[number] = new Image("lk_foto/" + number +".JPG");
     photo.setImage(photos[number]);
     root.getChildren().add(photo);
+    photo.setOnMouseClicked(e -> {
+        changeAuthorImage();
+    });
     // Ende Komponenten
     
     primaryStage.setOnCloseRequest(e -> System.exit(0));
@@ -140,6 +144,12 @@ public class GameOverGUI extends Application {
     // TODO hier Quelltext einfuegen
     
   } 
+  public void changeAuthorImage(){
+    Random random = new Random();
+    int number = random.nextInt(17);
+    photos[number] = new Image("lk_foto/" + number +".JPG");
+    photo.setImage(photos[number]);
+    }
   // Ende Methoden
 } // end of class LobbyGUI
 
