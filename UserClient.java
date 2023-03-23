@@ -141,16 +141,6 @@ public class UserClient extends Client
         }
     }
     
-    // /**
-     // * Methode shipsPlaced
-     // * CALLED FROM GUI
-     // * Method sends Notification about all ships placed to the server
-     // *
-     // */
-    // public void shipsPlaced(){
-        // NO FITTING PROTOCOLL COMMAND AVAIABLE
-    // }
-    
     /**
      * Methode processMessage
      * Processes Message send by server
@@ -171,6 +161,7 @@ public class UserClient extends Client
                 break;
         };
     }
+    
         /**
          * Methode processPositiveResponse
          *
