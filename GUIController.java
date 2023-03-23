@@ -103,16 +103,7 @@ public class GUIController
         }
         currState = _nextPhase;
     }
-    
-    //LOGINPHASE
-    /**
-     * CALLED FROM CLIENT
-     * if this method gets called, the player has signed in
-     */
-    public void signedIn()
-    {
-        
-    }
+
     /**
      * CALLED FROM GUI
      * SEND TO CLIENT

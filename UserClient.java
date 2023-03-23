@@ -171,7 +171,7 @@ public class UserClient extends Client
             String[] elements = message.split(":");       
             switch(elements[0]){
                 case "LOGIN":
-                    this.receiveSignedIn();
+                     //currently no additions needed
                     break;
                 case "LOGOUT":
                     //currently no additions needed
@@ -429,15 +429,6 @@ public class UserClient extends Client
         gui.nextPhase(Phase.EVALUATION);
     }
     
-    /**
-     * Methode receiveSignedIn
-     * CALLED FROM processMessage()
-     * Method verifies SignIn
-     * 
-     */
-    private void receiveSignedIn(){
-        gui.signedIn();
-    }
     
     /**
      * Methode rematch()
