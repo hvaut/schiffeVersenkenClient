@@ -112,15 +112,30 @@ public class GameOverGUI extends Application {
   
   // Anfang Methoden
   
+  /**
+     * Starts the GUI on his own
+     *
+     * @param args Unused
+     */
   public static void main(String[] args) {
     launch(args);
   } // end of main
   
+  /**
+   * Informs the GUIController over the pressed Lobby-Button
+   *
+   * @param evt Event that has fired this method
+   */
   public void bLobby_Action(Event evt) {
     // TODO hier Quelltext einfuegen
     
   } // end of bLobby_Action
     
+  /**
+   * Informs the GUIController over the pressed Rematch-Button
+   *
+   * @param evt Event that has fired this method
+   */
   public void bRematch_Action(Event evt) {
     // TODO hier Quelltext einfuegen
     
