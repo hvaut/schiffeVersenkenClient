@@ -29,9 +29,24 @@ public class GameGUI extends Application {
     private Label lZahl2[] = new Label[10];
     private Button bFeld2[][] = new Button[10][10];
     // Ende Attribute
+    
+    //IMPORTANT!!!
+    // staticStage -> needed to start Application (startMethod called in setController)
+    // root -> Pane must be defined here, and NOT in the start method. root must be accessible from the quit() method
+    // GUIController -> refference to the GUI controller needed for communication.
+    public static Stage staticStage = new Stage();
+    private Pane root;
+    private GUIController controller;
+    //
+    
+    public GameGUI(GUIController newController)
+    {
+        controller = newController;
+        start(staticStage);
+    }
 
     public void start(Stage primaryStage) { 
-        Pane root = new Pane();
+        root = new Pane();
         Scene scene = new Scene(root, 1264, 986);
         // Anfang Komponenten
 
@@ -139,6 +154,11 @@ public class GameGUI extends Application {
     } // end of public GameGUI
 
     // Anfang Methoden
+    
+    public void quit()
+    {
+        ((Stage)root.getScene().getWindow()).close();
+    }
 
     public static void main(String[] args) {
         launch(args);
