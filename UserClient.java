@@ -34,7 +34,7 @@ public class UserClient extends Client
         super(ip, port);
         this.gui=gui;
         if(!this.isConnected())
-            throw new Exception("Connection could not be established! Check IP and Port");
+            throw new Exception("Connection not established! Check IP and Port");
     }
 
     /**
@@ -59,7 +59,7 @@ public class UserClient extends Client
     
     /**
      * CALLED FROM GUI:
-     * Asks the server to start a game against the choosen User ?challengePlayer?
+     * Asks the server to start a game against the choosen User
      * @param User The person you want to play with
      */
     public void startGame(String user) {
