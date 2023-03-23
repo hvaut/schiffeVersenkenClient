@@ -167,7 +167,7 @@ public class GameOverGUI extends Application {
                 return "Maximilian";
             case 3:
                 return "Ole";
-            case 4, 16:
+            case 4:
                 return "Finn";
             case 5:
                 return "John";
