@@ -34,7 +34,7 @@ public class UserClient extends Client
         super(ip, port);
         this.gui=gui;
         if(!this.isConnected())
-            throw new Exception("No Connection");
+            throw new Exception("Connection could not be established! Check IP and Port");
     }
 
     /**
