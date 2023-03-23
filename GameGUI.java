@@ -14,7 +14,7 @@ import javafx.event.*;
  * Beschreibung
  *
  * @version 1.0 vom 16.03.2023
- * @author 
+ * @author Kevin Knoche/ Tio Thoben
  */
 
 public class GameGUI extends Application {
