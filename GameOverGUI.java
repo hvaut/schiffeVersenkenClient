@@ -30,6 +30,7 @@ public class GameOverGUI extends Application {
     private Line line1 = new Line();
     private Label lErgebnis = new Label();
     private Label lLeaderboard = new Label();
+    private Label lThanks = new Label();
     private Button bRematch = new Button();
     private Button bLobby = new Button();
 
@@ -71,6 +72,12 @@ public class GameOverGUI extends Application {
         lLeaderboard.setAlignment(Pos.CENTER);
         lLeaderboard.setFont(Font.font("Castellar", 32));
         root.getChildren().add(lLeaderboard);
+        lThanks.setLayoutX(150);
+        lThanks.setLayoutY(707);
+        lThanks.setPrefHeight(35);
+        lThanks.setPrefWidth(425);
+        lThanks.setText("Danke fürs spielen");
+        root.getChildren().add(lThanks);
         bLobby.setLayoutX(40);
         bLobby.setLayoutY(530);
         bLobby.setPrefHeight(100);
@@ -99,9 +106,7 @@ public class GameOverGUI extends Application {
         //}
         getAuthorImage();
         root.getChildren().add(photo);
-        photo.setOnMouseClicked(e -> {
-                    getAuthorImage();
-            });
+        photo.setOnMouseClicked(e -> getAuthorImage());
         // Ende Komponenten
 
         primaryStage.setOnCloseRequest(e -> System.exit(0));
@@ -149,6 +154,45 @@ public class GameOverGUI extends Application {
         int number = random.nextInt(17);
         photos[number] = new Image("lk_foto/" + number +".JPG");
         photo.setImage(photos[number]);
+        lThanks.setText(getAuthorName(number) + " sagt: \nDanke fürs spielen :)");
+    }
+    
+    private String getAuthorName(int authorNumber){
+        switch (authorNumber) {
+            case 0:
+                return "Kevin";
+            case 1:
+                return "Tim";
+            case 2:
+                return "Maximilian";
+            case 3:
+                return "Ole";
+            case 4, 17:
+                return "Finn";
+            case 5:
+                return "John";
+            case 6:
+                return "Daniel";
+            case 7, 8:
+                return "Leon";
+            case 9:
+                return "Georg";
+            case 10, 16:
+                return "Joshua";
+            case 11:
+                return "Nikita";
+            case 12:
+                return "Arthur";
+            case 13:
+                return "Tio";
+            case 14:
+                return "Luca";
+            case 15:
+                return "Herr Vaut";
+            default:
+                System.out.println("Error at getAuthorName: Wrong number");
+                return "";
+        }
     }
     // Ende Methoden
 } // end of class LobbyGUI
