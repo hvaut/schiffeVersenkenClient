@@ -35,7 +35,7 @@ public class GameOverGUI extends Application {
     private Button bLobby = new Button();
 
     private ImageView photo = new ImageView();
-    private Image photos[] = new Image[18];
+    private Image photos[] = new Image[16];
     //new Image("lk_foto/IMG_5429.JPG");
     // Ende Attribute
 
@@ -151,7 +151,7 @@ public class GameOverGUI extends Application {
      */
     public void getAuthorImage(){
         Random random = new Random();
-        int number = random.nextInt(17);
+        int number = random.nextInt(16);
         photos[number] = new Image("lk_foto/" + number +".JPG");
         photo.setImage(photos[number]);
         lThanks.setText(getAuthorName(number) + " sagt: \nDanke fürs spielen :)");
@@ -167,7 +167,7 @@ public class GameOverGUI extends Application {
                 return "Maximilian";
             case 3:
                 return "Ole";
-            case 4, 17:
+            case 4, 16:
                 return "Finn";
             case 5:
                 return "John";
@@ -177,7 +177,7 @@ public class GameOverGUI extends Application {
                 return "Leon";
             case 9:
                 return "Georg";
-            case 10, 16:
+            case 10:
                 return "Joshua";
             case 11:
                 return "Nikita";
