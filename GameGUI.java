@@ -155,20 +155,41 @@ public class GameGUI extends Application {
 
     // Anfang Methoden
     
+    /**
+     * Closes the programm
+     *
+     */
     public void quit()
     {
         ((Stage)root.getScene().getWindow()).close();
     }
 
+    /**
+     * Starts the GUI on his own
+     *
+     * @param args Unused
+     */
     public static void main(String[] args) {
         launch(args);
     } // end of main
 
+    /**
+     * Informs the GUIController over a pressed button on field 1
+     *
+     * @param x X-Coordinate of the pressed button
+     * @param y Y-Coordinate of the pressed button
+     */
     public void bFeld1_Action(int x, int y) {
         // TODO hier Quelltext einfuegen
 
     } // end of bFeld1_Action
     
+    /**
+     * Informs the GUIController over a pressed button on field 2
+     *
+     * @param x X-Coordinate of the pressed button
+     * @param y Y-Coordinate of the pressed buttonr
+     */
     public void bFeld2_Action(int x, int y) {
         // TODO hier Quelltext einfuegen
 
