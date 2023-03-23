@@ -104,6 +104,6 @@ public class LobbyGUI extends Application {
     public static void main(String[] args) {
         launch(args);
     } // end of main
-
+    
     // Ende Methoden
 } // end of class LobbyGUI
