@@ -96,7 +96,7 @@ public class GameOverGUI extends Application {
         );
         bRematch.setText("Rematch");
         root.getChildren().add(bRematch);
-        photo.setX(276);
+        photo.setX(225);
         photo.setY(707);
         photo.setRotate(270);
         photo.setFitWidth(300);
