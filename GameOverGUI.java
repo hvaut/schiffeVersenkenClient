@@ -147,16 +147,25 @@ public class GameOverGUI extends Application {
     } 
 
     /**
-     * Sets a random photo for the ImageView "photo"
+     * Inserts a random image for ImageView "photo" and wraps a thank you message next to it
      */
     public void getAuthorImage(){
         Random random = new Random();
         int number = random.nextInt(16);
         photos[number] = new Image("lk_foto/" + number +".JPG");
         photo.setImage(photos[number]);
-        lThanks.setText(getAuthorName(number) + " sagt: \nDanke fürs spielen :)");
+        
+        String author = getAuthorName(number);
+        if (author.equals("")){
+            lThanks.setText("Danke fürs spielen :)");
+        }else{
+            lThanks.setText(author + " sagt: \nDanke fürs spielen :)");
+        }
     }
     
+    /**
+     * Returns the author matching the image number
+     */
     private String getAuthorName(int authorNumber){
         switch (authorNumber) {
             case 0:
