@@ -29,6 +29,7 @@ public class PlacementGUI extends Application {
   private Label yCord[]= new Label[10];
   private Label xCord[]= new Label[10];
   private Button bReady= new Button();
+  private int[][] ships = new int[10][10];
   
   //IMPORTANT!!!
     // staticStage -> needed to start Application (startMethod called in setController)
@@ -86,6 +87,7 @@ public class PlacementGUI extends Application {
             button[i][j].setLayoutY(197+65*j);
             button[i][j].setPrefHeight(45);
             button[i][j].setPrefWidth(45);
+            button[i][j].setStyle("-fx-text-fill: red; -fx-font-size: 16px;");
             final int c=i;
             final int d=j;
             button[i][j].setOnAction(
@@ -142,10 +144,24 @@ public class PlacementGUI extends Application {
   
   public void buttonPressed_Action(int x,int y) {
     // TODO hier Quelltext einfgen
-    controller.placeShip(x,y);
+    if(ships[x][y]==0){
+        ships[x][y]=1;
+        button[x][y].setText("X");
+    }
+    else {
+        ships[x][y]=0;
+        button[x][y].setText("");
+    }
   } // end of button1_Action
 
-
+    public void bReady(){
+        List<int[]> shipss= new List<int[]>();
+        for(int i=0; i<10; i++)
+            for(int j=0; j<10; j++){
+            int[] xy = {i,j};
+            if(ships[i][j]==0)shipss.append(xy);
+            }
+    }
   // Ende Methoden
 } // end of class PlacementGui
 

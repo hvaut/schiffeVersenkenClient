@@ -254,6 +254,6 @@ public class GUIController
     public void fireOwnField( int x, int y){}
     public void fireEnemyField( int x, int y){}
     public void sendRematchRequest(){}
-    public void placeShip(int x, int y){}
+    public void placeShip(List<int[]> coordinate){}
 
 }
