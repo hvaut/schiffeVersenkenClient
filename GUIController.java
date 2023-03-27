@@ -223,23 +223,26 @@ public class GUIController
     //utils
     /**
      * Methode getObsList
-     * Transforms an List<User> to an ObserverableList<String>. Takes attribut of User as String by given param.
+     * Transforms an List<User> to an ObserverableList<String>. If user has Points, points are added by ":" + user.getPoints()
      *
      * @param users List<User>
      * @param attribute String
      * @return list OberverableList<String>
      */
-    private ObservableList<String> getObsList(List<User> users, String attribute){
+    private ObservableList<String> getObsList(List<User> users){
         ObservableList<String> list = FXCollections.observableArrayList();
         users.toFirst();
         
         while(users.hasAccess()){
             String content;
-            if(attribute.equals("name")){
-                content = users.getContent().getName();
-            }else{
-                content = users.getContent().getPoints();
+            User curr = users.getContent();
+            
+            content = users.getContent().getName();
+            if(curr.getPoints() != null){
+                content += ":";
+                content += users.getContent().getPoints();
             }
+            
             list.add(content);
             users.next();
         }
