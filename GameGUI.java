@@ -181,6 +181,7 @@ public class GameGUI extends Application {
      */
     public void bYourField_Action(int x, int y) {
         // TODO hier Quelltext einfuegen
+        controller.fireOwnField(x,y);
     } // end of bYourField_Action
     
     /**
@@ -191,7 +192,7 @@ public class GameGUI extends Application {
      */
     public void bEnemyField_Action(int x, int y) {
         // TODO hier Quelltext einfuegen
-
+        controller.fireEnemyField(x,y);
     } 
     
     public void receiveFieldUpdate(boolean yourField, int x, int y, FieldEvent fieldEvent){

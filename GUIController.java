@@ -220,7 +220,6 @@ public class GUIController
     {
     
     }
-    
     //utils
     /**
      * Methode getObsList
@@ -246,4 +245,9 @@ public class GUIController
         }
         return list;
     }
+
+    public void fireOwnField( int x, int y){}
+    public void fireEnemyField( int x, int y){}
+    public void sendRematchRequest(){}
+
 }
