@@ -36,6 +36,7 @@ public class GameOverGUI extends Application {
 
     private ImageView photo = new ImageView();
     private Image photos[] = new Image[16];
+    private GUIController controller;
     //new Image("lk_foto/IMG_5429.JPG");
     // Ende Attribute
 
@@ -133,7 +134,7 @@ public class GameOverGUI extends Application {
      */
     public void bLobby_Action(Event evt) {
         // TODO hier Quelltext einfuegen
-
+        controller.nextPhase(Phase.LOBBY);
     } // end of bLobby_Action
 
     /**
@@ -143,7 +144,7 @@ public class GameOverGUI extends Application {
      */
     public void bRematch_Action(Event evt) {
         // TODO hier Quelltext einfuegen
-
+        controller.sendRematchRequest();
     } 
 
     /**
