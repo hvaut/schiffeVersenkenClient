@@ -122,7 +122,7 @@ public class GUIController
      */
     public void updatePlayerList(List<User> playerList)
     {
-        
+        ObservableList<String> list = this.getObsList(playerList);
     }
     
     /**
@@ -131,7 +131,7 @@ public class GUIController
      */
     public void updateLeaderboard(List<User> leaderList)
     {
-        
+        ObservableList<String> list = this.getObsList(leaderList);
     }
     
     /**
