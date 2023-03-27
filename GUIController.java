@@ -1,6 +1,8 @@
 import javafx.application.*;
+import javafx.collections.*;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import javafx.collections.ObservableList;
 
 /**
  *  Class to control the different GameScreens
@@ -217,5 +219,31 @@ public class GUIController
     public void updateShips(List<Integer> ships)
     {
     
+    }
+    
+    //utils
+    /**
+     * Methode getObsList
+     * Transforms an List<User> to an ObserverableList<String>. Takes attribut of User as String by given param.
+     *
+     * @param users List<User>
+     * @param attribute String
+     * @return list OberverableList<String>
+     */
+    private ObservableList<String> getObsList(List<User> users, String attribute){
+        ObservableList<String> list = FXCollections.observableArrayList();
+        users.toFirst();
+        
+        while(users.hasAccess()){
+            String content;
+            if(attribute.equals("name")){
+                content = users.getContent().getName();
+            }else{
+                content = users.getContent().getPoints();
+            }
+            list.add(content);
+            users.next();
+        }
+        return list;
     }
 }
