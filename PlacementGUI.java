@@ -89,7 +89,7 @@ public class PlacementGUI extends Application {
             final int c=i;
             final int d=j;
             button[i][j].setOnAction(
-              (event) -> {button1_Action(c,d);} 
+              (event) -> {buttonPressed_Action(c,d);} 
             );
             root.getChildren().add(button[i][j]);
         }
@@ -140,9 +140,9 @@ public class PlacementGUI extends Application {
     launch(args);
   } // end of main
   
-  public void button1_Action(int x,int y) {
+  public void buttonPressed_Action(int x,int y) {
     // TODO hier Quelltext einfgen
-    
+    controller.placeShip(x,y);
   } // end of button1_Action
 
 

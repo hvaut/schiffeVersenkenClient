@@ -246,8 +246,11 @@ public class GUIController
         return list;
     }
 
+    
+    //Von den GUIs aufgerufen
     public void fireOwnField( int x, int y){}
     public void fireEnemyField( int x, int y){}
     public void sendRematchRequest(){}
+    public void placeShip(int x, int y){}
 
 }
