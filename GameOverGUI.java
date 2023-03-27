@@ -35,11 +35,22 @@ public class GameOverGUI extends Application {
     private Button bLobby = new Button();
 
     private ImageView photo = new ImageView();
-    private Image photos[] = new Image[16];
-    private GUIController controller;
+    private Image picture;
     //new Image("lk_foto/IMG_5429.JPG");
     // Ende Attribute
 
+    public static Stage staticStage = new Stage();
+    private Pane root;
+    private GUIController controller;
+    //
+  // Ende Attribute
+  
+  public GameOverGUI(GUIController newController)
+    {
+        controller = newController;
+        start(staticStage);
+    }
+    
     public void start(Stage primaryStage) { 
         Pane root = new Pane();
         Scene scene = new Scene(root, 1264, 986);
@@ -153,8 +164,8 @@ public class GameOverGUI extends Application {
     public void getAuthorImage(){
         Random random = new Random();
         int number = random.nextInt(16);
-        photos[number] = new Image("lk_foto/" + number +".JPG");
-        photo.setImage(photos[number]);
+        picture = new Image("lk_foto/" + number +".JPG");
+        photo.setImage(picture);
         
         String author = getAuthorName(number);
         if (author.equals("")){
